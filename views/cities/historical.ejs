@@ -1,0 +1,162 @@
+<h1>Cities</h1>
+
+<form method="POST" action="/cities/search">
+  <div class="form-group">
+    <label for="city-search">Search for city</label>
+    <input class="form-control" name="search"/>
+  </div>
+  <button type="submit" class="btn btn-success">Search</button>
+
+</form>
+
+<hr />
+
+<h3>pull city name from db</h3>
+
+<h4><%- weather.trip.title %>, <%- weather.trip.airport_code %></h4>
+<p>Cloud cover: <%- weather.trip.cloud_cover.cond %></p>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Min</th>
+      <th>Avg</th>
+      <th>High</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Temp High, F</th>
+      <td><%- weather.trip.temp_high.min.F %></td>
+      <td><%- weather.trip.temp_high.avg.F %></td>
+      <td><%- weather.trip.temp_high.max.F %></td>
+    </tr>
+    <tr>
+      <th>Temp Low, F</th>
+      <td><%- weather.trip.temp_low.min.F %></td>
+      <td><%- weather.trip.temp_low.avg.F %></td>
+      <td><%- weather.trip.temp_low.max.F %></td>
+    </tr>
+    <tr>
+      <th>Precip, in</th>
+      <td><%- weather.trip.precip.min.in %></td>
+      <td><%- weather.trip.precip.avg.in %></td>
+      <td><%- weather.trip.precip.max.in %></td>
+    </tr>
+    <tr>
+      <th>Dewpoint High</th>
+      <td><%- weather.trip.dewpoint_high.min.F %></td>
+      <td><%- weather.trip.dewpoint_high.avg.F %></td>
+      <td><%- weather.trip.dewpoint_high.max.F %></td>
+    </tr>
+    <tr>
+      <th>Dewpoint Low</th>
+      <td><%- weather.trip.dewpoint_low.min.F %></td>
+      <td><%- weather.trip.dewpoint_low.avg.F %></td>
+      <td><%- weather.trip.dewpoint_low.max.F %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Description</th>
+      <th>% Chance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><%- weather.trip.chance_of.tempoversixty.name %></th>
+      <td><%- weather.trip.chance_of.tempoversixty.description %></td>
+      <td><%- weather.trip.chance_of.tempoversixty.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofwindyday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofwindyday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofwindyday.precentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofpartlycloudyday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofpartlycloudyday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofpartlycloudyday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofsunnycloudyday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofsunnycloudyday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofsunnycloudyday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofcloudyday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofcloudyday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofcloudyday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofhumidday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofhumidday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofhumidday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceoffogday.name %></th>
+      <td><%- weather.trip.chance_of.chanceoffogday.description %></td>
+      <td><%- weather.trip.chance_of.chanceoffogday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofprecip.name %></th>
+      <td><%- weather.trip.chance_of.chanceofprecip.description %></td>
+      <td><%- weather.trip.chance_of.chanceofprecip.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofrainday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofrainday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofrainday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofthunderday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofthunderday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofthunderday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.tempoverninety.name %></th>
+      <td><%- weather.trip.chance_of.tempoverninety.description %></td>
+      <td><%- weather.trip.chance_of.tempoverninety.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofsnowonground.name %></th>
+      <td><%- weather.trip.chance_of.chanceofsnowonground.description %></td>
+      <td><%- weather.trip.chance_of.chanceofsnowonground.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceoftornadoday.name %></th>
+      <td><%- weather.trip.chance_of.chanceoftornadoday.description %></td>
+      <td><%- weather.trip.chance_of.chanceoftornadoday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofsultryday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofsultryday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofsultryday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.tempbelowfreezing.name %></th>
+      <td><%- weather.trip.chance_of.tempbelowfreezing.description %></td>
+      <td><%- weather.trip.chance_of.tempbelowfreezing.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.tempoverfreezing.name %></th>
+      <td><%- weather.trip.chance_of.tempoverfreezing.description %></td>
+      <td><%- weather.trip.chance_of.tempoverfreezing.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofhailday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofhailday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofhailday.percentage %></td>
+    </tr>
+    <tr>
+      <th><%- weather.trip.chance_of.chanceofsnowday.name %></th>
+      <td><%- weather.trip.chance_of.chanceofsnowday.description %></td>
+      <td><%- weather.trip.chance_of.chanceofsnowday.percentage %></td>
+    </tr>
+
+  </tbody>
+</table>

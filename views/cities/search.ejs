@@ -16,7 +16,8 @@
     <div class="well">
       <h5><%- city.name %></h5>
       <a href="#" value="<%- city.l %>" type="submit" class="btn btn-sm btn-info">Add</a>
-      <a href="/cities/details<%- city.l %>" value="<%- city.l %>" name="<%- city.name %>" type="submit" class="btn btn-sm btn-info">Details</a>
+      <a href="/cities/forecast<%- city.l %>" value="<%- city.l %>" name="<%- city.name %>" class="btn btn-sm btn-info">Forecast</a>
+      <a href="/cities/historical<%- city.l %>" value="<%- city.l %>" name="<%- city.name %>" class="btn btn-sm btn-info">Historical</a>
     </div>
   <% }); %>
 <% } else { %>

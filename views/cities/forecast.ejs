@@ -17,8 +17,7 @@
 
 <% weather.forecast.txt_forecast.forecastday.forEach(function(item){ %>
   <div class="well">
-    <img src="<%- item.icon_url %>" />
-    <p><%- item.title %></p>
+    <h4><%- item.title %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
     <p><%- item.fcttext %></p>
   </div>
 <% }); %>
@@ -27,10 +26,9 @@
 
 <% weather.forecast.simpleforecast.forecastday.forEach(function(item){ %>
   <div class="well">
-    <img src="<%- item.icon_url %>" />
-    <p><%- item.date.weekday %>, <%- item.date.year %>-<%- item.date.month %>-<%- item.date.day %></p>
-    <p>High: <%- item.high.fahrenheit %> F</p>
-    <p>Low: <%- item.low.fahrenheit %> F</p>
-    <p>Conditions: <%- item.conditions %> F</p>
+    <h4><%- item.date.weekday %>, <%- item.date.month %>-<%- item.date.day %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
+    <p>High: <%- item.high.fahrenheit %> &#8457</p>
+    <p>Low: <%- item.low.fahrenheit %> &#8457</p>
+    <p>Conditions: <%- item.conditions %></p>
   </div>
 <% }); %>

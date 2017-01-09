@@ -21,14 +21,30 @@ router.post('/search', function(req, res){
 
 });
 
-router.get('/details/q/:id', function(req, res){
+router.get('/forecast/q/:id', function(req, res){
   var query = req.params.id;
   query = "q/"+query;
-  var cityUrl = "http://api.wunderground.com/api/b4b355346be47a17/forecast/"+query+".json";
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast/"+query+".json";
 
-  request.get(cityUrl, function(error, response, body){
+  request.get(url, function(error, response, body){
     var weather = JSON.parse(body);
-    res.render('cities/details', {weather: weather});
+    res.render('cities/forecast', {weather: weather});
+  });
+
+});
+
+router.get('/historical/q/:id', function(req, res){
+  var query = req.params.id;
+  query = "q/"+query;
+
+  //MMDD
+  startDate = "0701";
+  endDate = "0714";
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/planner_"+startDate+endDate+"/"+query+".json";
+
+  request.get(url, function(error, response, body){
+    var weather = JSON.parse(body);
+    res.render('cities/historical', {weather: weather});
   });
 
 });
