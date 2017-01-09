@@ -7,6 +7,8 @@ var moment = require('moment');
 var db = require('./models');
 var app = express();
 var session = require('express-session');
+var passport = require('passport');
+var flash = require('flash');
 
 app.set('view engine', 'ejs');
 
@@ -36,7 +38,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/', function(req, res){]
+app.get('/', function(req, res){
   res.render('index');
 });
 
