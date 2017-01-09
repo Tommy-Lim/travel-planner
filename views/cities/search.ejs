@@ -1,22 +1,24 @@
-<div class="container">
-  <h1>Cities</h1>
+<h1>Cities</h1>
 
-  <form method="POST" action="/cities/search">
-    <div class="form-group">
-      <label for="city-search">Search for city</label>
-      <input class="form-control" name="search"/>
-    </div>
-    <button type="submit" class="btn btn-success">Search</button>
+<form method="POST" action="/cities/search">
+  <div class="form-group">
+    <label for="city-search">Search for city</label>
+    <input class="form-control" name="search"/>
+  </div>
+  <button type="submit" class="btn btn-success">Search</button>
 
-  </form>
+</form>
 
-  <hr />
+<hr />
 
+<% if(cities.length>=1){ %>
   <% cities.forEach(function(city){ %>
     <div class="well">
       <h5><%- city.name %></h5>
-      <button href="#" value="<%- city.l %>" type="submit" class="btn btn-sm btn-success">Add</button>
+      <a href="#" value="<%- city.l %>" type="submit" class="btn btn-sm btn-info">Add</a>
+      <a href="/cities/details<%- city.l %>" value="<%- city.l %>" name="<%- city.name %>" type="submit" class="btn btn-sm btn-info">Details</a>
     </div>
   <% }); %>
-
-</div>
+<% } else { %>
+  <h3>No seasrch results found.</h3>
+<% }; %>

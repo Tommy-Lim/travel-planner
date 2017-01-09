@@ -1,0 +1,36 @@
+<h1>Cities</h1>
+
+<form method="POST" action="/cities/search">
+  <div class="form-group">
+    <label for="city-search">Search for city</label>
+    <input class="form-control" name="search"/>
+  </div>
+  <button type="submit" class="btn btn-success">Search</button>
+
+</form>
+
+<hr />
+
+<h3>pull city name from db</h3>
+
+<h4>10-day forecast text</h4>
+
+<% weather.forecast.txt_forecast.forecastday.forEach(function(item){ %>
+  <div class="well">
+    <img src="<%- item.icon_url %>" />
+    <p><%- item.title %></p>
+    <p><%- item.fcttext %></p>
+  </div>
+<% }); %>
+
+<h4>10-day forecast numerical</h4>
+
+<% weather.forecast.simpleforecast.forecastday.forEach(function(item){ %>
+  <div class="well">
+    <img src="<%- item.icon_url %>" />
+    <p><%- item.date.weekday %>, <%- item.date.year %>-<%- item.date.month %>-<%- item.date.day %></p>
+    <p>High: <%- item.high.fahrenheit %> F</p>
+    <p>Low: <%- item.low.fahrenheit %> F</p>
+    <p>Conditions: <%- item.conditions %> F</p>
+  </div>
+<% }); %>

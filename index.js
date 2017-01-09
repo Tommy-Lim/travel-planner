@@ -20,24 +20,6 @@ app.use(function(req, res, next){
 
 app.get('/', function(req, res){
 
-  // // cities API
-  // var cityURL =
-  // request(cityURL, function(req, res){
-  //
-  // });
-  //
-  // // weather API
-  // var weatherURL =
-  // request(weatherURL, function(req, res){
-  //
-  // });
-  //
-  // // flights API
-  // var flightURL =
-  // request(flightURL, function(req, res){
-  //
-  // });
-
   res.render('index');
 });
 
