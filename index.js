@@ -6,6 +6,7 @@ var ejsLayouts = require('express-ejs-layouts');
 var moment = require('moment');
 var db = require('./models');
 var app = express();
+var session = require('express-session');
 
 app.set('view engine', 'ejs');
 
@@ -18,13 +19,30 @@ app.use(function(req, res, next){
   next();
 });
 
-app.get('/', function(req, res){
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'travel secrets',
+  resave: false,
+  saveUninitialized: true
+}));
 
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(flash());
+
+app.use(function(req, res, next) {
+  res.locals.alerts = req.flash();
+  res.locals.currentUser = req.user;
+  next();
+});
+
+app.get('/', function(req, res){]
   res.render('index');
 });
 
-app.use('/dashboard', require('./controllers/dashboard'));
+app.use('/profile', require('./controllers/profile'));
 app.use('/cities', require('./controllers/cities'));
+app.use('/auth', require('./controllers/auth'));
 
 var server = app.listen(process.env.PORT || 3000);
 
