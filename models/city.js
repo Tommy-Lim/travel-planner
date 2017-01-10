@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
   var city = sequelize.define('city', {
     name: DataTypes.STRING,
     country: DataTypes.STRING,
-    code: DataTypes.INTEGER
+    citycode: DataTypes.INTEGER,
+    zip: DataTypes.INTEGER
   }, {
     classMethods: {
       associate: function(models) {

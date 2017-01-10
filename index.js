@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('./config/ppConfig');
 var request = require('request');
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -7,7 +8,6 @@ var moment = require('moment');
 var db = require('./models');
 var app = express();
 var session = require('express-session');
-var passport = require('passport');
 var flash = require('flash');
 
 app.set('view engine', 'ejs');
@@ -22,7 +22,7 @@ app.use(function(req, res, next){
 });
 
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'travel secrets',
+  secret: process.env.SESSION_SECRET || 'temp secret',
   resave: false,
   saveUninitialized: true
 }));

@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       validate: {
         len: {
-          args: [9, 99],
+          args: [8, 99],
           msg: 'Password must be between 8 and 99 characters'
         }
       }
@@ -38,11 +38,23 @@ module.exports = function(sequelize, DataTypes) {
     age: {
       type: DataTypes.INTEGER,
       validate: {
+        isNumeric: {
+          msg: 'Invaled age'
+        }
       }
     },
-    currentcity: {
-      type: DataTypes.STRING,
+    citycode: {
+      type: DataTypes.INTEGER,
       validate: {
+      }
+    },
+    zip: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isNumeric: {
+          msg: 'Invaled age'
+        },
+
       }
     },
   },{

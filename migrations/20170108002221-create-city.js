@@ -14,7 +14,10 @@ module.exports = {
       country: {
         type: Sequelize.STRING
       },
-      code: {
+      citycode: {
+        type: Sequelize.INTEGER
+      },
+      zip: {
         type: Sequelize.INTEGER
       },
       createdAt: {

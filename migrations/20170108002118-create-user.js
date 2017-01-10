@@ -23,8 +23,11 @@ module.exports = {
       age: {
         type: Sequelize.INTEGER
       },
-      currentcity: {
-        type: Sequelize.STRING
+      citycode: {
+        type: Sequelize.INTEGER
+      },
+      zip: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
