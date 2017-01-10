@@ -20,11 +20,19 @@
   </head>
   <body>
 
+    <%- JSON.stringify(currentUser) %>
+
+    <% include partials/alerts %>
+
     <div class="container">
+
       <% include partials/nav %>
       <%- body %>
+
       <hr />
+
       <% include partials/footer %>
+
     </div>
 
 

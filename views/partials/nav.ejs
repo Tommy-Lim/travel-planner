@@ -1,6 +1,12 @@
-<a href="/">Home</a>
-<a href="/cities/">Search</a>
-<a href="/auth/signup">Sign up</a>
-<a href="/auth/login">Log in</a>
-<a href="/profile">Log out</a>
-<a href="/profile">Profile</a>
+<div class="nav-partial">
+  <a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+  <a href="/cities/"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+  <% if(!currentUser){ %>
+    <a href="/auth/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+    <a href="/auth/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
+  <% } else{ %>
+    <a href="/profile"><span class="glyphicon glyphicon-user"></span> Profile</a>
+    <a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+  <% } %>
+
+</div>

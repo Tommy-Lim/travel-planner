@@ -26,7 +26,7 @@ router.get('/forecast/q/:id', function(req, res){
   var name = req.params.id.split('=')[1];
 
   query = "q/"+query;
-  var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast/"+query+".json";
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/"+query+".json";
 
   request.get(url, function(error, response, body){
     var weather = JSON.parse(body);

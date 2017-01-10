@@ -3,10 +3,11 @@ var LocalStrategy = require('passport-local').Strategy;
 var db = require('../models/');
 
 passport.serializeUser(function(user, cb){
+  // null instead of an error
   cb(null, user.id);
 });
 
-passport.deserializeUser(function(user, cb){
+passport.deserializeUser(function(id, cb){
   db.user.findById(id).then(function(user){
     cb(null, user);
   }).catch(cb);
@@ -19,6 +20,7 @@ passport.use(new LocalStrategy({
   db.user.find({
     where: {email: email}
   }).then(function(user){
+    console.log('user info: ', user);
     if(!user || !user.validPassword(password)){
       cb(null, false);
     } else{

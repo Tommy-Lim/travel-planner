@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('../config/ppConfig');
 var request = require('request');
 var db = require('../models');
+var isLoggedIn = require('../middleware/isLoggedIn');
 var router = express.Router();
 
 
@@ -9,7 +10,7 @@ router.get('/signup', function(req, res){
   res.render('auth/signup');
 });
 
-router.post('/signup', function(req, res){
+router.post('/signup', function(req, res, next){
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
@@ -27,14 +28,15 @@ router.post('/signup', function(req, res){
   }).spread(function(user, created){
     if(created){
       passport.authenticate('local', {
-        successRedirect: '/profile'
-      })(req,res);
+        successRedirect: '/profile',
+        successFlash: 'Account created and logged in'
+      })(req, res, next);
     } else{
-      console.log('Email already exists');
+      req.flash('error', 'Email already exists');
       res.redirect('/auth/signup');
     }
   }).catch(function(error){
-    console.log('An error occurred: ', error.message);
+    req.flash('error', error.message);
     res.redirect('/auth/signup');
   });
 
@@ -46,12 +48,14 @@ router.get('/login', function(req, res){
 
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/profile',
-  failureRedirect: '/auth/login'
+  failureRedirect: '/auth/login',
+  successFlash: 'Logged in',
+  failureFlash: 'Invalid email and/or password'
 }));
 
-router.get('/logout', function(req, res){
+router.get('/logout', isLoggedIn, function(req, res){
   req.logout();
-  console.log('Logged out');
+  req.flash('success', 'Logged out');
   res.redirect('/');
 });
 

@@ -1,3 +1,6 @@
+//Creates environment variables from .env file
+require('dotenv').config();
+
 var express = require('express');
 var passport = require('./config/ppConfig');
 var request = require('request');
@@ -8,7 +11,7 @@ var moment = require('moment');
 var db = require('./models');
 var app = express();
 var session = require('express-session');
-var flash = require('flash');
+var flash = require('connect-flash');
 
 app.set('view engine', 'ejs');
 
