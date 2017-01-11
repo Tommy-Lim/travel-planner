@@ -6,8 +6,7 @@
 }
 .nav-partial a{
   height: 100%;
-  display: flex;
-  align-items: center;
+  padding-top: 10px;
 }
 
 .nav-partial a:hover{

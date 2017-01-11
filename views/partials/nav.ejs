@@ -5,7 +5,7 @@
     <a href="/auth/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
     <a href="/auth/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
   <% } else{ %>
-    <a href="/profile"><span class="glyphicon glyphicon-user"></span> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></a>
+    <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></a>
     <a href="/profile/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
     <a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
   <% } %>
