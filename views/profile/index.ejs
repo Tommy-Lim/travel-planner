@@ -1,19 +1,21 @@
 <h2>Profile</h2>
 
-<div class="well profile-container">
-  <img src="<%- currentUser.image %>" class="profile-pic">
-  <span>
-    <h2><%- currentUser.name %></h2>
-    <hr />
-    <p><strong>Home ZIP</strong></p>
-    <p><%= currentUser.zip %></p>
-    <p><strong>Destination ZIPs</strong><p>
-    <p><% user.cities.forEach(function(city){ %> <%= city.zip %> <% }) %></p>
-  </span>
-
+<div class="well">
+  <h2><%- currentUser.name %></h2>
+  <hr />
+  <div class="profile-container">
+    <img src="<%- currentUser.image %>" class="profile-pic">
+    <span>
+      <p><strong>Home ZIP</strong></p>
+      <p><%= currentUser.zip %></p>
+      <p><strong>Destination ZIPs</strong><p>
+      <p>
+        <% user.cities.forEach(function(city){ %> <%= city.zip %> <% }) %>
+        <% if(user.cities.length==0){%> None added <% }; %>
+      </p>
+    </span>
+  </div>
 </div>
-
-
 
 
 <% zips.forEach(function(zip, index){ %>
@@ -42,5 +44,10 @@
       <p>Conditions: <%- item.conditions %></p>
     </div>
   <% }); %>
+
+  <% if(zips.length===1){ %>
+    <hr />
+    <h3>No destinations added - search and add new destinations to compare to home</h3>
+  <% } %>
 
 <% }); %>
