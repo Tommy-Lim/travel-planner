@@ -9,12 +9,12 @@ router.get('/', function(req, res){
   res.render('cities/index');
 });
 
-router.post('/search', function(req, res){
+router.get('/search', function(req, res){
 
-  var query = req.body.search;
+  var query = req.query.search;
   var citiesUrl = "http://autocomplete.wunderground.com/aq?query="+query;
 
-  request.post(citiesUrl, function(error, response, body){
+  request.get(citiesUrl, function(error, response, body){
     var cities = JSON.parse(body).RESULTS;
     res.render('cities/search', {cities: cities});
   });
@@ -58,10 +58,10 @@ router.get('/historical/:zip', function(req, res){
 });
 
 router.get('/details/:zip', function(req, res){
-  var query = req.params.zip.split('=')[0];
+  var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
 
-  var url = "http://api.wunderground.com/api/b4b355346be47a17/conditions/q/zmw:"+query+".1.99999.json";
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/conditions/q/zmw:"+zip+".1.99999.json";
 
   request.get(url, function(error, response, body){
     var details = JSON.parse(body);
