@@ -5,6 +5,7 @@
   <span>
     <h4><%- currentUser.name %></h4>
     <p>Home ZIP: <%= currentUser.zip %></p>
+    <p>Favorite ZIPs: <% user.cities.forEach(function(city){ %> <%= city.zip %> <% }) %></p>
   </span>
 
 </div>

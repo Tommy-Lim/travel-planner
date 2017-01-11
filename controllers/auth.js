@@ -15,6 +15,12 @@ router.post('/signup', function(req, res, next){
   var email = req.body.email;
   var password = req.body.password;
   var zip = req.body.zip;
+  var image = req.body.image;
+  var age = req.body.age;
+
+  if(!image){
+    image = "/img/user.png";
+  }
 
   db.user.findOrCreate({
     where: {
@@ -23,7 +29,9 @@ router.post('/signup', function(req, res, next){
     defaults: {
       name: name,
       password: password,
-      zip: zip
+      zip: zip,
+      image: image,
+      age: age
     }
   }).spread(function(user, created){
     if(created){
