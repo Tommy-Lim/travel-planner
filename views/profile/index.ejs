@@ -14,34 +14,33 @@
 </div>
 
 
-<h4>10-day forecast for home ZIP <%= currentUser.zip %></h4>
 
-<% weather[currentUser.zip].forecast.txt_forecast.forecastday.forEach(function(item){ %>
-  <div class="well">
-    <h4><%- item.title %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
-    <p><%- item.fcttext %></p>
-  </div>
-<% }); %>
 
-<h4>10-day forecast numerical</h4>
+<% zips.forEach(function(zip, index){ %>
+  <% if(index==0){ %>
+    <h2>10-day forecast for home ZIP <%= zip %></h2>
+  <% } else{ %>
+    <h2>10-day forecast for destination ZIP <%= zip %></h2>
+  <% } %>
 
-<% weather[currentUser.zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
-  <div class="well">
-    <h4><%- item.date.weekday %>, <%- item.date.month %>-<%- item.date.day %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
-    <p>High: <%- item.high.fahrenheit %> &#8457</p>
-    <p>Low: <%- item.low.fahrenheit %> &#8457</p>
-    <p>Conditions: <%- item.conditions %></p>
-  </div>
-<% }); %>
+  <h4>Text forecast <%= zip %></h4>
 
-<% user.cities.forEach(function(city){ %>
-  <p>
-    <%= city.zip %>
-  </p>
-<% }); %>
+  <% weather[zip].forecast.txt_forecast.forecastday.forEach(function(item){ %>
+    <div class="well">
+      <h4><%- item.title %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
+      <p><%- item.fcttext %></p>
+    </div>
+  <% }); %>
 
-<% zips.forEach(function(zip){ %>
-  <p>
-    <%= zip %>
-  </p>
+  <h4>Numerical forecast</h4>
+
+  <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
+    <div class="well">
+      <h4><%- item.date.weekday %>, <%- item.date.month %>-<%- item.date.day %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
+      <p>High: <%- item.high.fahrenheit %> &#8457</p>
+      <p>Low: <%- item.low.fahrenheit %> &#8457</p>
+      <p>Conditions: <%- item.conditions %></p>
+    </div>
+  <% }); %>
+
 <% }); %>
