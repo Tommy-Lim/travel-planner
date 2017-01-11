@@ -3,9 +3,12 @@
 <div class="well profile-container">
   <img src="<%- currentUser.image %>" class="profile-pic">
   <span>
-    <h4><%- currentUser.name %></h4>
-    <p>Home ZIP: <%= currentUser.zip %></p>
-    <p>Favorite ZIPs: <% user.cities.forEach(function(city){ %> <%= city.zip %> <% }) %></p>
+    <h2><%- currentUser.name %></h2>
+    <hr />
+    <p><strong>Home ZIP</strong></p>
+    <p><%= currentUser.zip %></p>
+    <p><strong>Destination ZIPs</strong><p>
+    <p><% user.cities.forEach(function(city){ %> <%= city.zip %> <% }) %></p>
   </span>
 
 </div>

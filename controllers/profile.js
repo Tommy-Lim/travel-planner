@@ -13,15 +13,14 @@ router.get('/', isLoggedIn, function(req, res){
     },
     include: [db.city]
   }).then(function(user){
+    
+    var destinationZips = user.cities;
+    var homeZip = req.user.zip;
 
-    var zip = req.user.zip;
-    // home city weather
     var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".1.99999.json";
 
     request.get(url, function(error, response, body){
       var weather = JSON.parse(body);
-      console.log('weather: ', weather);
-      console.log('user cities: ', user.cities);
       res.render('profile/index', {
         weather: weather,
         zip: zip,
@@ -54,8 +53,6 @@ router.post('/settings', isLoggedIn, function(req, res){
 // ADDS A DESTINATION CITY TO USER IN DATABASE
 router.post('/:zmw', isLoggedIn, function(req, res){
   var zmw = req.params.zmw;
-  console.log('zmw: ', zmw);
-  console.log('user: ', req.user.email);
 
   db.user.findOrCreate({
     where: {
@@ -67,8 +64,8 @@ router.post('/:zmw', isLoggedIn, function(req, res){
         zip: zmw
       }
     }).spread(function(city, created){
+      req.flash('success', 'Destination added');
       user.addCity(city);
-      req.flash('success', city.zip+' added');
       res.redirect('/profile');
     });
   });
