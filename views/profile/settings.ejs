@@ -1,0 +1,36 @@
+<h2>Settings</h2>
+
+<div class="well">
+
+  <form method="PUT" action="/profile/settings" id="update-user">
+
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input name="name" class="form-control" value="<%= user.name %>" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input name="email" class="form-control" type="email" value="<%= user.email %>" required />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input name="password" class="form-control" type="password" placeholder="8-99 characters" required />
+    </div>
+    <div class="form-group">
+      <label for="zip">Home ZIP Code</label>
+      <input name="zip" class="form-control" value="<%= user.zip %>" type="number" required />
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input name="age" class="form-control" type="number" value="<%= user.age %>" required />
+    </div>
+    <div class="form-group">
+      <label for="image">Profile Image</label>
+      <input name="image" class="form-control"  value="<%= user.image %>" required />
+    </div>
+
+    <input type="submit" class="btn btn-success" />
+
+  </form>
+
+</div>

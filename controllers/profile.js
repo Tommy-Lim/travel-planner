@@ -39,5 +39,20 @@ router.post('/', isLoggedIn, function(req, res){
 
 });
 
+router.get('/settings', isLoggedIn, function(req, res){
+  res.render('profile/settings', {
+    user: req.user
+  });
+});
+
+router.put('/settings', isLoggedIn, function(req, res){
+
+
+  console.log('USER: ', req.user);
+  console.log('USER id: ', req.user.id);
+  req.flash('success', 'Profile settings updated');
+  res.send('success');
+});
+
 
 module.exports = router;
