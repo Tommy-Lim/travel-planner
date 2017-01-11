@@ -3,31 +3,60 @@ var request = require('request');
 var isLoggedIn = require('../middleware/isLoggedIn');
 var db = require('../models');
 var router = express.Router();
+var async = require('async');
 
 // DIRECTS A USER TO THEIR PROFILE
 router.get('/', isLoggedIn, function(req, res){
-
-  db.user.find({
-    where: {
-      email: req.user.email
-    },
-    include: [db.city]
-  }).then(function(user){
-    
-    var destinationZips = user.cities;
-    var homeZip = req.user.zip;
-
-    var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".1.99999.json";
-
-    request.get(url, function(error, response, body){
-      var weather = JSON.parse(body);
-      res.render('profile/index', {
-        weather: weather,
-        zip: zip,
-        user: user
+  var zips;
+  var dbUser;
+  //get all zips with the first being the home zip
+  function getZips(callback){
+    zips = [];
+    db.user.find({
+      where: {
+        email: req.user.email
+      },
+      include: [db.city]
+    }).then(function(user){
+      dbUser = user;
+      // add the destination zips from users_cities
+      user.cities.forEach(function(city){
+        zips.push(city.zip);
       });
+      // add the home zip from user
+      zips.unshift(req.user.zip);
+      callback(null, zips);
+    });
+  }
+
+  // get all weather data
+  function getAllWeather(zips, callback){
+    var weather = {};
+    console.log('zips: ', zips);
+
+    var getWeather = function(zip, callback){
+      var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".1.99999.json";
+      request.get(url, function(error, response, body){
+        var singleWeather = JSON.parse(body);
+        weather[zip] = singleWeather;
+        callback(null, singleWeather);
+      });
+    };
+
+    async.concat(zips, getWeather, function(err, results){
+      console.log('Array of weather objects: ', results);
+      callback(null, weather);
     });
 
+  }
+
+  async.waterfall([getZips, getAllWeather], function(err, results){
+    console.log('Object of key:value zip:weather pairs: ', results);
+    res.render('profile/index', {
+      weather: results,
+      zips: zips,
+      user: dbUser
+    });
   });
 
 });
