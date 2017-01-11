@@ -46,11 +46,12 @@ router.get('/login', function(req, res){
   res.render('auth/login');
 });
 
+
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/profile',
-  failureRedirect: '/auth/login',
-  successFlash: 'Logged in',
-  failureFlash: 'Invalid email and/or password'
+    successRedirect: '/profile',
+    failureRedirect: '/auth/login',
+    successFlash: 'Logged in',
+    failureFlash: 'Invalid email and/or password'
 }));
 
 router.get('/logout', isLoggedIn, function(req, res){

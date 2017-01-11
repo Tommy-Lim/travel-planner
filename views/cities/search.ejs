@@ -5,11 +5,11 @@
 <% if(cities.length>=1){ %>
   <% cities.forEach(function(city){ %>
     <div class="well">
-      <h5><%- city.name %></h5>
-      <a href="#" value="<%- city.l %>" type="submit" class="btn btn-sm btn-info">Add</a>
-      <a href="/cities/details<%- city.l %>=<%- city.name %>" value="<%- city.l %>" name="<%- city.name %>" class="btn btn-sm btn-info">Details</a>
-      <a href="/cities/forecast<%- city.l %>=<%- city.name %>" value="<%- city.l %>" name="<%- city.name %>" class="btn btn-sm btn-info">Forecast</a>
-      <a href="/cities/historical<%- city.l %>=<%- city.name %>" value="<%- city.l %>" name="<%- city.name %>" class="btn btn-sm btn-info">Historical Weather</a>
+      <h5><%- city.name %>, <%= city.zmw.split('.')[0]%></h5>
+      <a href="#" value="<%- city.l %>" type="submit" class="btn btn-xs btn-primary"> <i class="fa fa-plus" aria-hidden="true"></i> Add</a>
+      <a href="/cities/details/<%- city.zmw.split('.')[0] %>=<%- city.name %>" name="<%- city.name %>" class="btn btn-xs btn-info">Details</a>
+      <a href="/cities/forecast/<%- city.zmw.split('.')[0] %>=<%- city.name %>" name="<%- city.name %>" class="btn btn-xs btn-info">Forecast</a>
+      <a href="/cities/historical/<%- city.zmw.split('.')[0] %>=<%- city.name %>" name="<%- city.name %>" class="btn btn-xs btn-info">Historical</a>
     </div>
   <% }); %>
 <% } else { %>

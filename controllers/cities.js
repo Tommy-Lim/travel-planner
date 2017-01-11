@@ -21,12 +21,11 @@ router.post('/search', function(req, res){
 
 });
 
-router.get('/forecast/q/:id', function(req, res){
-  var query = req.params.id.split('=')[0];
-  var name = req.params.id.split('=')[1];
+router.get('/forecast/:zip', function(req, res){
+  var zip = req.params.zip.split('=')[0];
+  var name = req.params.zip.split('=')[1];
 
-  query = "q/"+query;
-  var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/"+query+".json";
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".1.99999.json";
 
   request.get(url, function(error, response, body){
     var weather = JSON.parse(body);
@@ -38,15 +37,15 @@ router.get('/forecast/q/:id', function(req, res){
 
 });
 
-router.get('/historical/q/:id', function(req, res){
-  var query = req.params.id.split('=')[0];
-  var name = req.params.id.split('=')[1];
-  query = "q/"+query;
+router.get('/historical/:zip', function(req, res){
+  var zip = req.params.zip.split('=')[0];
+  var name = req.params.zip.split('=')[1];
 
   //MMDD TODO: make this user input
   startDate = "0701";
   endDate = "0714";
-  var url = "http://api.wunderground.com/api/b4b355346be47a17/planner_"+startDate+endDate+"/"+query+".json";
+
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/planner_"+startDate+endDate+"/q/zmw:"+zip+".1.99999.json";
 
   request.get(url, function(error, response, body){
     var weather = JSON.parse(body);
@@ -58,12 +57,11 @@ router.get('/historical/q/:id', function(req, res){
 
 });
 
-router.get('/details/q/:id', function(req, res){
-  var query = req.params.id.split('=')[0];
-  var name = req.params.id.split('=')[1];
-  query = "q/"+query;
+router.get('/details/:zip', function(req, res){
+  var query = req.params.zip.split('=')[0];
+  var name = req.params.zip.split('=')[1];
 
-  var url = "http://api.wunderground.com/api/b4b355346be47a17/conditions/"+query+".json";
+  var url = "http://api.wunderground.com/api/b4b355346be47a17/conditions/q/zmw:"+query+".1.99999.json";
 
   request.get(url, function(error, response, body){
     var details = JSON.parse(body);
