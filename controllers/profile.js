@@ -45,13 +45,15 @@ router.get('/settings', isLoggedIn, function(req, res){
   });
 });
 
-router.put('/settings', isLoggedIn, function(req, res){
+router.post('/settings', isLoggedIn, function(req, res){
+  db.user.findById(req.user.id).then(function(user){
+    user.update(req.body);
+    req.flash('success', 'Profile settings updated');
+    res.redirect('/profile');
+  }).catch(function(error){
+    res.send('error', error.message);
+  });
 
-
-  console.log('USER: ', req.user);
-  console.log('USER id: ', req.user.id);
-  req.flash('success', 'Profile settings updated');
-  res.send('success');
 });
 
 

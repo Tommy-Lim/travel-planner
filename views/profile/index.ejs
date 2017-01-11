@@ -1,7 +1,12 @@
 <h2>Profile</h2>
 
-<div class="well">
-  <p>This will display your current or home city and the cities you've added to your profile.</p>
+<div class="well profile-container">
+  <img src="<%- currentUser.image %>" class="profile-pic">
+  <span>
+    <h4><%- currentUser.name %></h4>
+    <p>Home ZIP: <%= currentUser.zip %></p>
+  </span>
+
 </div>
 
 

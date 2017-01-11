@@ -2,3 +2,15 @@
   display: flex;
   justify-content: space-around;
 }
+
+.profile-pic{
+  height: 60px;
+  width: 60px;
+  margin-right: 10px;
+}
+
+.profile-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
