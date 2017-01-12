@@ -78,7 +78,7 @@ body{
   height: 30px;
 }
 
-#modalDates{
+#modalDates, #modalSettings{
   background-color: rgba(0,0,0,0);
   box-shadow: none;
 }

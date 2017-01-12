@@ -15,10 +15,19 @@ router.post('/signup', function(req, res, next){
   var email = req.body.email;
   var password = req.body.password;
   var zip = req.body.zip;
+  var cityname = req.body.cityname;
   var image = req.body.image;
   var age = req.body.age;
   var historystart = req.body.historystart;
   var historyend = req.body.historyend;
+
+  if(!zip){
+    zip = 98115;
+  }
+
+  if(!cityname){
+    cityname = "Seattle, Washington";
+  }
 
   if(!image){
     image = "/img/user.png";
@@ -40,6 +49,7 @@ router.post('/signup', function(req, res, next){
       name: name,
       password: password,
       zip: zip,
+      cityname: cityname,
       image: image,
       age: age,
       historystart: historystart,
