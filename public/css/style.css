@@ -62,3 +62,10 @@ body{
     display: none;
   }
 }
+
+.home-container{
+  height: 30vh;
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+}
