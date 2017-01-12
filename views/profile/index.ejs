@@ -1,7 +1,7 @@
 <h4>Profile</h4>
 
 <div class="well">
-  <h2><%- currentUser.name %></h2>
+  <h4><%- currentUser.name %></h4>
   <div class="profile-container">
     <img src="<%- currentUser.image %>" class="profile-pic">
     <span>
@@ -16,10 +16,10 @@
   </div>
 </div>
 
-<h4>10-day Forecasts</h4>
+<h5>10-day Forecasts</h5>
 
 <div class="weather-matrix">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped table-bordered centered">
     <thead>
       <th></th>
       <% weather[zips[0]].forecast.simpleforecast.forecastday.forEach(function(item){ %>
@@ -31,9 +31,9 @@
         <tr>
           <td>
             <% if(index==0){ %>
-              <%= zip %><br />(home)
+              <%= zip %><br />(home)<br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } else{ %>
-              <%= zip %>
+              <%= zip %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } %>
           </td>
           <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
@@ -51,10 +51,10 @@
   </table>
 </div>
 
-<h4><%= history[zips[0]].trip.title %></h4>
+<h5><%= history[zips[0]].trip.title %></h5>
 
 <div class="weather-matrix">
-  <table class="table table-striped table-bordered">
+  <table class="table table-striped table-bordered centered">
     <thead>
       <th></th>
       <th>Cloud cover</th>
@@ -69,9 +69,9 @@
         <tr>
           <td>
             <% if(index==0){ %>
-              <%= zip %><br />(home)
+              <%= zip %><br />(home)<br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } else{ %>
-              <%= zip %>
+              <%= zip %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } %>
           </td>
           <td><%= history[zip].trip.cloud_cover.cond %></td>

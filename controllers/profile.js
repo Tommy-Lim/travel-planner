@@ -134,5 +134,13 @@ router.post('/:zmw', isLoggedIn, function(req, res){
   });
 });
 
+// DELETE CITY FROM USER AND DB
+router.get('/delete/:zip', function(req, res){
+  var zip = req.params.zip;
+
+
+
+});
+
 
 module.exports = router;
