@@ -5,11 +5,11 @@
   <div class="profile-container">
     <img src="<%- currentUser.image %>" class="profile-pic">
     <span>
-      <p><strong>Home ZIP</strong></p>
-      <p><%= currentUser.zip %></p>
-      <p><strong>Destination ZIPs</strong><p>
+      <p><strong>Home</strong></p>
+      <p><%= currentUser.cityname %></p>
+      <p><strong>Destinations</strong><p>
       <p>
-        <% user.cities.forEach(function(city){ %> <%= city.zip %> <% }) %>
+        <% user.cities.forEach(function(city){ %> <%= city.cityname %> <% }) %>
         <% if(user.cities.length==0){%> None added <% }; %>
       </p>
     </span>
@@ -73,6 +73,8 @@
    </form>
  </div>
 </div>
+
+<br />
 
 <div class="weather-matrix">
   <table class="table table-striped table-bordered centered">
