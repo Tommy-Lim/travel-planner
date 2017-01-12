@@ -9,6 +9,9 @@ var async = require('async');
 router.get('/', isLoggedIn, function(req, res){
   var zips;
   var dbUser;
+  var weather = {};
+  var history = {};
+
   //get all zips with the first being the home zip
   function getZips(callback){
     zips = [];
@@ -31,11 +34,10 @@ router.get('/', isLoggedIn, function(req, res){
 
   // get all weather data
   function getAllWeather(zips, callback){
-    var weather = {};
-    console.log('zips: ', zips);
 
     var getWeather = function(zip, callback){
       var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".1.99999.json";
+      console.log('url for weather: ', url)
       request.get(url, function(error, response, body){
         var singleWeather = JSON.parse(body);
         weather[zip] = singleWeather;
@@ -44,18 +46,38 @@ router.get('/', isLoggedIn, function(req, res){
     };
 
     async.concat(zips, getWeather, function(err, results){
-      console.log('Array of weather objects: ', results);
-      callback(null, weather);
+      callback(null, zips);
     });
 
   }
 
-  async.waterfall([getZips, getAllWeather], function(err, results){
-    console.log('Object of key:value zip:weather pairs: ', results);
+  // get historical weather data
+  function getAllHistorical(zips, callback){
+
+    var getHistorical = function(zip, callback){
+      var url = "http://api.wunderground.com/api/b4b355346be47a17/planner_"+dbUser.historystart+dbUser.historyend+"/q/zmw:"+zip+".1.99999.json";
+      console.log('url for history:', url);
+      request.get(url, function(error, response, body){
+        var singleHistory = JSON.parse(body);
+        history[zip] = singleHistory;
+        callback(null, singleHistory);
+      });
+    };
+
+    async.concat(zips, getHistorical, function(err, results){
+      callback(null, results);
+    });
+
+  }
+
+  async.waterfall([getZips, getAllWeather, getAllHistorical], function(err, results){
+    console.log('Object of key:value zip:weather pairs: ', weather);
+    console.log('Object of key:value zip:history pairs: ', history);
     res.render('profile/index', {
-      weather: results,
+      weather: weather,
       zips: zips,
-      user: dbUser
+      user: dbUser,
+      history: history
     });
   });
 

@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<h4>Home and Destination Forecasts</h4>
+<h4>10-day Home and Destination Forecasts</h4>
 
 <div class="weather-matrix">
   <table class="table table-striped table-bordered">
@@ -44,6 +44,39 @@
             <%- item.high.fahrenheit %>&#8457
           </td>
         <% }); %>
+      </tr>
+    <% }); %>
+  </table>
+</div>
+
+<h4><%= history[zips[0]].trip.title %></h4>
+
+<div class="weather-matrix">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <th></th>
+      <th>Cloud cover</th>
+      <th>Low Temp Avg.</th>
+      <th>High Temp Avg.</th>
+      <th>Precip. Avg.</th>
+      <th>Low Dewpoint Avg.</th>
+      <th>High dewpoint Avg.</th>
+    </thead>
+    <% zips.forEach(function(zip, index){ %>
+      <tr>
+        <td>
+          <% if(index==0){ %>
+            <%= zip %><br />(home)
+          <% } else{ %>
+            <%= zip %>
+          <% } %>
+        </td>
+        <td><%= history[zip].trip.cloud_cover.cond %></td>
+        <td><%= history[zip].trip.temp_low.avg.F %>&#8457</td>
+        <td><%= history[zip].trip.temp_high.avg.F %>&#8457</td>
+        <td><%= history[zip].trip.precip.avg.in %>in.</td>
+        <td><%= history[zip].trip.dewpoint_low.avg.F %>&#8457</td>
+        <td><%= history[zip].trip.dewpoint_high.avg.F %>&#8457</td>
       </tr>
     <% }); %>
   </table>
