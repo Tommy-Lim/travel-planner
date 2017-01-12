@@ -39,7 +39,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       validate: {
         isNumeric: {
-          msg: 'Invaled age'
+          msg: 'Invalid age'
         }
       }
     },

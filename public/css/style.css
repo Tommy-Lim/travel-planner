@@ -39,5 +39,16 @@ body{
 }
 
 .weather-icon{
+  width: 25px;
+}
 
+.weather-matrix{
+  overflow-x: scroll;
+}
+
+.matrixHeader{
+  position: absolute;
+  background-color: inherit;
+  width: 56px;
+  height: 81px;
 }

@@ -5,7 +5,7 @@
 <% if(cities.length>=1){ %>
   <% cities.forEach(function(city){ %>
     <div class="well">
-      <h5><%- city.name %>, <%= city.zmw.split('.')[0]%></h5>
+      <h5><%- city.name %> <%= city.zmw.split('.')[0]%></h5>
       <a href="/profile/<%- city.zmw.split('.')[0] %>" type="submit" class="btn btn-xs btn-primary add-button"> <i class="fa fa-plus" aria-hidden="true"></i> Add</a>
       <a href="/cities/details/<%- city.zmw.split('.')[0] %>=<%- city.name %>" name="<%- city.name %>" class="btn btn-xs btn-info">Details</a>
       <a href="/cities/forecast/<%- city.zmw.split('.')[0] %>=<%- city.name %>" name="<%- city.name %>" class="btn btn-xs btn-info">Forecast</a>
