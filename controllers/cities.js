@@ -1,9 +1,10 @@
+//Creates environment variables from .env file
+require('dotenv').config();
+
 var express = require('express');
 var request = require('request');
 var db = require('../models');
 var router = express.Router();
-
-
 
 router.get('/', function(req, res){
   res.render('cities/index');

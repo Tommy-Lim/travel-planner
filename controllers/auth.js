@@ -1,3 +1,6 @@
+//Creates environment variables from .env file
+require('dotenv').config();
+
 var express = require('express');
 var passport = require('../config/ppConfig');
 var request = require('request');
