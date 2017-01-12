@@ -43,8 +43,8 @@ module.exports = function(sequelize, DataTypes) {
         }
       }
     },
-    citycode: {
-      type: DataTypes.INTEGER,
+    cityname: {
+      type: DataTypes.STRING,
       validate: {
       }
     },
