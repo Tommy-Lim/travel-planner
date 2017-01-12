@@ -131,6 +131,7 @@ router.get('/delete/:zip', function(req, res){
     }).then(function(city) {
       user.removeCity(city).then(function(user) {
         console.log("updated:", user.cities);
+        req.flash('success', 'Destination removed');
         res.redirect('/profile');
       });
     });
@@ -138,7 +139,7 @@ router.get('/delete/:zip', function(req, res){
 });
 
 // ADDS A HOME CITY TO USER IN DATABASE
-router.post('/home/:zmw', isLoggedIn, function(req, res){
+router.get('/home/:zmw', isLoggedIn, function(req, res){
   var zmw = req.params.zmw.split('=')[0];
   var cityname = req.params.zmw.split('=')[1];
 
@@ -151,7 +152,6 @@ router.post('/home/:zmw', isLoggedIn, function(req, res){
       zip: zmw,
       cityname: cityname
     }). then(function(){
-      // TODO: why won't this flash message work?
       req.flash('success', 'Home updated');
       res.redirect('/profile');
     });
@@ -159,7 +159,7 @@ router.post('/home/:zmw', isLoggedIn, function(req, res){
 });
 
 // ADDS A DESTINATION CITY TO USER IN DATABASE
-router.post('/:zmw', isLoggedIn, function(req, res){
+router.get('/:zmw', isLoggedIn, function(req, res){
   var zmw = req.params.zmw.split('=')[0];
   var cityname = req.params.zmw.split('=')[1];
 
@@ -176,7 +176,6 @@ router.post('/:zmw', isLoggedIn, function(req, res){
         cityname: cityname
       }
     }).spread(function(city, created){
-      // TODO: why won't this flash message work?
       req.flash('success', 'Destination added');
       user.addCity(city);
       res.redirect('/profile');
