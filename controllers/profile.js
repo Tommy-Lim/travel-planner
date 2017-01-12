@@ -55,7 +55,7 @@ router.get('/', isLoggedIn, function(req, res){
   function getAllWeather(zips, callback){
 
     var getWeather = function(zip, callback){
-      var url = "http://api.wunderground.com/api/"+WEATHER_APP_KEY+"/forecast10day/q/zmw:"+zip+".json";
+      var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/forecast10day/q/zmw:"+zip+".json";
       request.get(url, function(error, response, body){
         var singleWeather = JSON.parse(body);
         weather[zip] = singleWeather;
@@ -73,7 +73,7 @@ router.get('/', isLoggedIn, function(req, res){
   function getAllHistorical(zips, callback){
 
     var getHistorical = function(zip, callback){
-      var url = "http://api.wunderground.com/api/"+WEATHER_APP_KEY+"/planner_"+dbUser.historystart+dbUser.historyend+"/q/zmw:"+zip+".json";
+      var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+dbUser.historystart+dbUser.historyend+"/q/zmw:"+zip+".json";
       request.get(url, function(error, response, body){
         var singleHistory = JSON.parse(body);
         history[zip] = singleHistory;
@@ -88,7 +88,6 @@ router.get('/', isLoggedIn, function(req, res){
   }
 
   async.waterfall([getZips, getCities, getAllWeather, getAllHistorical], function(err, results){
-    console.log("Cities: ", cities);
     res.render('profile/index', {
       weather: weather,
       zips: zips,

@@ -9,14 +9,18 @@
       <p><%= currentUser.cityname %></p>
       <p><strong>Destinations</strong><p>
       <p>
-        <% user.cities.forEach(function(city){ %> <%= city.cityname %> <% }) %>
+        <% user.cities.forEach(function(city, index){ %>
+          <% if(index==user.cities.length-1){ %>
+            <%= city.cityname %>
+          <% } else{ %>
+            <%= city.cityname %> |
+          <% } %>
+        <% }) %>
         <% if(user.cities.length==0){%> None added <% }; %>
       </p>
     </span>
   </div>
 </div>
-
-<%= JSON.stringify(cities) %>
 
 <h5>10-day Forecasts</h5>
 
@@ -33,9 +37,9 @@
         <tr>
           <td>
             <% if(index==0){ %>
-              <%= zip %><br />(home)
+              <%= cities[index] %><br />(home)
             <% } else{ %>
-              <%= zip %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <%= cities[index] %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } %>
           </td>
           <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
@@ -92,9 +96,9 @@
         <tr>
           <td>
             <% if(index==0){ %>
-              <%= zip %><br />(home)
+              <%= cities[index] %><br />(home)
             <% } else{ %>
-              <%= zip %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <%= cities[index] %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } %>
           </td>
           <td><%= history[zip].trip.cloud_cover.cond %></td>

@@ -38,7 +38,7 @@ router.get('/forecast/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
 
-  var url = "http://api.wunderground.com/api/"+WEATHER_APP_KEY+"/forecast10day/q/zmw:"+zip+".json";
+  var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/forecast10day/q/zmw:"+zip+".json";
 
   request.get(url, function(error, response, body){
     var weather = JSON.parse(body);
@@ -58,7 +58,7 @@ router.get('/historical/:zip', function(req, res){
   startDate = "0701";
   endDate = "0714";
 
-  var url = "http://api.wunderground.com/api/"+WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
+  var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
 
   request.get(url, function(error, response, body){
     var weather = JSON.parse(body);
@@ -74,7 +74,7 @@ router.get('/details/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
 
-  var url = "http://api.wunderground.com/api/"+WEATHER_APP_KEY+"/conditions/q/zmw:"+zip+".json";
+  var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/conditions/q/zmw:"+zip+".json";
 
   request.get(url, function(error, response, body){
     var details = JSON.parse(body);
