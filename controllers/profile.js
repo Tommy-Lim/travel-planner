@@ -93,6 +93,7 @@ router.post('/:zmw', isLoggedIn, function(req, res){
         zip: zmw
       }
     }).spread(function(city, created){
+      // TODO: why won't this flash message work?
       req.flash('success', 'Destination added');
       user.addCity(city);
       res.redirect('/profile');

@@ -10,7 +10,7 @@ body{
 
 .nav-partial a{
   height: 50px;
-  padding-top: 15px;
+  padding-top: 10px;
 }
 
 .nav-partial a:hover{
@@ -51,4 +51,14 @@ body{
   background-color: inherit;
   width: 56px;
   height: 81px;
+}
+
+.layout-container{
+  max-width: 700px;
+}
+
+@media (max-width: 600px) {
+  .nav-text{
+    display: none;
+  }
 }

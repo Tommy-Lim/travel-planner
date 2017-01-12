@@ -1,13 +1,13 @@
 <div class="navbar navbar-fixed-top nav-partial">
-  <a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-  <a href="/cities/"><i class="fa fa-search" aria-hidden="true"></i> Search</a>
+  <a href="/"><i class="fa fa-home fa-2x" aria-hidden="true"></i><span class="nav-text"> Home</span></a>
+  <a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i><span class="nav-text"> Search</span></a>
   <% if(!currentUser){ %>
-    <a href="/auth/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
-    <a href="/auth/login"><i class="fa fa-sign-in" aria-hidden="true"></i> Log in</a>
+    <a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="nav-text"> Sign up</span></a>
+    <a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i><span class="nav-text"> Log in</span></a>
   <% } else{ %>
-    <a href="/profile"><i class="fa fa-user" aria-hidden="true"></i> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></a>
-    <a href="/profile/settings"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
-    <a href="/auth/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+    <a href="/profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i><span class="nav-text"> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></span></a>
+    <a href="/profile/settings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i><span class="nav-text"> Settings</span></a>
+    <a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i><span class="nav-text"> Log out</span></a>
   <% } %>
 
 </div>
