@@ -8,6 +8,7 @@ var async = require('async');
 // DIRECTS A USER TO THEIR PROFILE
 router.get('/', isLoggedIn, function(req, res){
   var zips;
+  var cities;
   var dbUser;
   var weather = {};
   var history = {};
@@ -32,12 +33,25 @@ router.get('/', isLoggedIn, function(req, res){
     });
   }
 
+  function getCities(zips, callback){
+    cities =[];
+    zips.forEach(function(zip){
+      db.city.find({
+        where: {
+          zip: zip
+        }
+      }).then(function(city){
+        cities.push(city.cityname);
+      });
+    });
+    callback(null, zips);
+  }
+
   // get all weather data
   function getAllWeather(zips, callback){
 
     var getWeather = function(zip, callback){
       var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".json";
-      console.log('url for weather: ', url);
       request.get(url, function(error, response, body){
         var singleWeather = JSON.parse(body);
         weather[zip] = singleWeather;
@@ -56,7 +70,6 @@ router.get('/', isLoggedIn, function(req, res){
 
     var getHistorical = function(zip, callback){
       var url = "http://api.wunderground.com/api/b4b355346be47a17/planner_"+dbUser.historystart+dbUser.historyend+"/q/zmw:"+zip+".json";
-      console.log('url for history:', url);
       request.get(url, function(error, response, body){
         var singleHistory = JSON.parse(body);
         history[zip] = singleHistory;
@@ -70,14 +83,14 @@ router.get('/', isLoggedIn, function(req, res){
 
   }
 
-  async.waterfall([getZips, getAllWeather, getAllHistorical], function(err, results){
-    console.log('Object of key:value zip:weather pairs: ', weather);
-    console.log('Object of key:value zip:history pairs: ', history);
+  async.waterfall([getZips, getCities, getAllWeather, getAllHistorical], function(err, results){
+    console.log("Cities: ", cities);
     res.render('profile/index', {
       weather: weather,
       zips: zips,
       user: dbUser,
-      history: history
+      history: history,
+      cities: cities,
     });
   });
 
@@ -123,7 +136,6 @@ router.get('/delete/:zip', function(req, res){
       }
     }).then(function(city) {
       user.removeCity(city).then(function(user) {
-        console.log("updated:", user.cities);
         req.flash('success', 'Destination removed');
         res.redirect('/profile');
       });
