@@ -37,7 +37,7 @@ router.get('/', isLoggedIn, function(req, res){
 
     var getWeather = function(zip, callback){
       var url = "http://api.wunderground.com/api/b4b355346be47a17/forecast10day/q/zmw:"+zip+".1.99999.json";
-      console.log('url for weather: ', url)
+      console.log('url for weather: ', url);
       request.get(url, function(error, response, body){
         var singleWeather = JSON.parse(body);
         weather[zip] = singleWeather;
@@ -95,6 +95,17 @@ router.post('/settings', isLoggedIn, function(req, res){
   db.user.findById(req.user.id).then(function(user){
     user.update(req.body);
     req.flash('success', 'Profile settings updated');
+    res.redirect('/profile');
+  }).catch(function(error){
+    res.send('error', error.message);
+  });
+});
+
+// SUBMITS UPDATE AND REFRESHES PROFILE
+router.post('/history', isLoggedIn, function(req, res){
+  db.user.findById(req.user.id).then(function(user){
+    user.update(req.body);
+    req.flash('success', 'History start and end interval updated');
     res.redirect('/profile');
   }).catch(function(error){
     res.send('error', error.message);

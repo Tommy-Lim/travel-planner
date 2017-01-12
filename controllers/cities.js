@@ -21,6 +21,18 @@ router.get('/search', function(req, res){
 
 });
 
+router.get('/search/:id', function(req, res){
+
+  var query = req.params.id;
+  var citiesUrl = "http://autocomplete.wunderground.com/aq?query="+query;
+
+  request.get(citiesUrl, function(error, response, body){
+    var cities = JSON.parse(body).RESULTS;
+    res.render('cities/search', {cities: cities});
+  });
+
+});
+
 router.get('/forecast/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];

@@ -1,4 +1,4 @@
-<h2>Profile</h2>
+<h4>Profile</h4>
 
 <div class="well">
   <h2><%- currentUser.name %></h2>
@@ -16,7 +16,7 @@
   </div>
 </div>
 
-<h4>10-day Home and Destination Forecasts</h4>
+<h4>10-day Forecasts</h4>
 
 <div class="weather-matrix">
   <table class="table table-striped table-bordered">
@@ -26,26 +26,28 @@
         <th><%- item.date.weekday.slice(0,3) %></th>
       <% }); %>
     </thead>
-    <% zips.forEach(function(zip, index){ %>
-      <tr>
-        <td>
-          <% if(index==0){ %>
-            <%= zip %><br />(home)
-          <% } else{ %>
-            <%= zip %>
-          <% } %>
-        </td>
-        <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
+    <tbody>
+      <% zips.forEach(function(zip, index){ %>
+        <tr>
           <td>
-            <img class="weather-icon" src="<%- item.icon_url %>" />
-            <br />
-            <%- item.low.fahrenheit %>&#8457
-            <br />
-            <%- item.high.fahrenheit %>&#8457
+            <% if(index==0){ %>
+              <%= zip %><br />(home)
+            <% } else{ %>
+              <%= zip %>
+            <% } %>
           </td>
-        <% }); %>
-      </tr>
-    <% }); %>
+          <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
+            <td>
+              <img class="weather-icon" src="<%- item.icon_url %>" />
+              <br />
+              <%- item.low.fahrenheit %>&#8457
+              <br />
+              <%- item.high.fahrenheit %>&#8457
+            </td>
+          <% }); %>
+        </tr>
+      <% }); %>
+    </tbody>
   </table>
 </div>
 
@@ -62,22 +64,37 @@
       <th>Low Dewpoint Avg.</th>
       <th>High dewpoint Avg.</th>
     </thead>
-    <% zips.forEach(function(zip, index){ %>
-      <tr>
-        <td>
-          <% if(index==0){ %>
-            <%= zip %><br />(home)
-          <% } else{ %>
-            <%= zip %>
-          <% } %>
-        </td>
-        <td><%= history[zip].trip.cloud_cover.cond %></td>
-        <td><%= history[zip].trip.temp_low.avg.F %>&#8457</td>
-        <td><%= history[zip].trip.temp_high.avg.F %>&#8457</td>
-        <td><%= history[zip].trip.precip.avg.in %>in.</td>
-        <td><%= history[zip].trip.dewpoint_low.avg.F %>&#8457</td>
-        <td><%= history[zip].trip.dewpoint_high.avg.F %>&#8457</td>
-      </tr>
-    <% }); %>
+    <tbody>
+      <% zips.forEach(function(zip, index){ %>
+        <tr>
+          <td>
+            <% if(index==0){ %>
+              <%= zip %><br />(home)
+            <% } else{ %>
+              <%= zip %>
+            <% } %>
+          </td>
+          <td><%= history[zip].trip.cloud_cover.cond %></td>
+          <td><%= history[zip].trip.temp_low.avg.F %>&#8457</td>
+          <td><%= history[zip].trip.temp_high.avg.F %>&#8457</td>
+          <td><%= history[zip].trip.precip.avg.in %>in.</td>
+          <td><%= history[zip].trip.dewpoint_low.avg.F %>&#8457</td>
+          <td><%= history[zip].trip.dewpoint_high.avg.F %>&#8457</td>
+        </tr>
+      <% }); %>
+    </tbody>
   </table>
 </div>
+
+<form method="POST" action="/profile/history">
+  <div class="form-group">
+    <label for="historystart">Start (MMDD)</label>
+    <input name="historystart" class="form-control" required/>
+  </div>
+  <div class="form-group">
+    <label for="historyend">End (MMDD)</label>
+    <input name="historyend" class="form-control" required/>
+  </div>
+  <input type="submit" class="btn btn-success" />
+</form>
+<br />

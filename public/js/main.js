@@ -18,3 +18,7 @@ $(".add-button").on('click', function(e){
   });
 
 });
+
+$(document).ready(function(){
+  $('.carousel').carousel();
+});
