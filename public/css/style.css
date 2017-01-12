@@ -9,7 +9,7 @@ body{
 }
 
 .nav-partial a{
-  height: 100%;
+  height: 50px;
   padding-top: 15px;
 }
 
@@ -36,4 +36,8 @@ body{
   height: 100px;
   color: white;
   margin-top: 10px;
+}
+
+.weather-icon{
+
 }

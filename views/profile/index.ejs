@@ -18,6 +18,42 @@
 </div>
 
 
+<table class="table table-striped table-bordered">
+  <thead>
+    <th>Zip</th>
+    <% weather[zips[0]].forecast.simpleforecast.forecastday.forEach(function(item){ %>
+      <th><%- item.date.weekday.slice(0,3) %></th>
+    <% }); %>
+  </thead>
+  <% zips.forEach(function(zip, index){ %>
+    <tr>
+      <td>
+        <% if(index==0){ %>
+          <%= zip %> (home)
+        <% } else{ %>
+          <%= zip %>
+        <% } %>
+      </td>
+      <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
+        <td>
+          <img class="weather-icon" src="<%- item.icon_url %>" />
+          <%- item.low.fahrenheit %> &#8457
+          <%- item.high.fahrenheit %> &#8457
+        </td>
+      <% }); %>
+    </tr>
+  <% }); %>
+</table>
+
+
+
+
+
+
+
+
+
+
 <% zips.forEach(function(zip, index){ %>
   <% if(index==0){ %>
     <h2>10-day forecast for home ZIP <%= zip %></h2>
@@ -27,23 +63,36 @@
 
   <h4>Text forecast <%= zip %></h4>
 
-  <% weather[zip].forecast.txt_forecast.forecastday.forEach(function(item){ %>
-    <div class="well">
-      <h4><%- item.title %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
-      <p><%- item.fcttext %></p>
-    </div>
-  <% }); %>
+  <table class="table table-striped table-bordered">
+    <% weather[zip].forecast.txt_forecast.forecastday.forEach(function(item){ %>
+      <tr>
+        <td><%- item.title %></td>
+        <td><span class="text-right"><img class="weather-icon" src="<%- item.icon_url %>" /></span></td>
+        <td><%- item.fcttext %></td>
+      </tr>
+    <% }); %>
+  </table>
 
-  <h4>Numerical forecast</h4>
+  <h4>Numerical forecast <%= zip %></h4>
 
-  <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
-    <div class="well">
-      <h4><%- item.date.weekday %>, <%- item.date.month %>-<%- item.date.day %> <span class="text-right"><img src="<%- item.icon_url %>" /></span></h4>
-      <p>High: <%- item.high.fahrenheit %> &#8457</p>
-      <p>Low: <%- item.low.fahrenheit %> &#8457</p>
-      <p>Conditions: <%- item.conditions %></p>
-    </div>
-  <% }); %>
+  <table class="table table-striped table-bordered">
+    <thead>
+      <th></th>
+      <th></th>
+      <th>High</th>
+      <th>Low</th>
+      <th>Cond.</th>
+    </thead>
+    <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
+      <tr>
+        <td><%- item.date.weekday.slice(0,3) %>, <%- item.date.month %>-<%- item.date.day %></td>
+        <td><span class="text-right"><img class="weather-icon" src="<%- item.icon_url %>" /></span></td>
+        <td><%- item.low.fahrenheit %> &#8457</td>
+        <td><%- item.high.fahrenheit %> &#8457</td>
+        <td><%- item.conditions %></td>
+      </tr>
+    <% }); %>
+  </table>
 
   <% if(zips.length===1){ %>
     <hr />
