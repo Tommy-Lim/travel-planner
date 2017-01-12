@@ -134,12 +134,28 @@ router.post('/:zmw', isLoggedIn, function(req, res){
   });
 });
 
-// DELETE CITY FROM USER AND DB
+// DELETE CITY FROM USER_CITIES AND CITIES IF ONLY ASSOCIATION
 router.get('/delete/:zip', function(req, res){
   var zip = req.params.zip;
+  var email = req.user.email;
 
-
-
+  db.user.find({
+    where: {
+      email: email
+    },
+    include: [db.city]
+  }).then(function(user) {
+    db.city.find({
+      where: {
+        zip: zip
+      }
+    }).then(function(city) {
+      user.removeCity(city).then(function(user) {
+        console.log("updated:", user.cities);
+        res.redirect('/profile');
+      });
+    });
+  });
 });
 
 

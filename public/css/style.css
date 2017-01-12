@@ -71,3 +71,8 @@ body{
   width:30px;
   height: 30px;
 }
+
+#modalDates{
+  background-color: rgba(0,0,0,0);
+  box-shadow: none;
+}

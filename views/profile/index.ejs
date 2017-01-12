@@ -31,7 +31,7 @@
         <tr>
           <td>
             <% if(index==0){ %>
-              <%= zip %><br />(home)<br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <%= zip %><br />(home)
             <% } else{ %>
               <%= zip %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } %>
@@ -53,6 +53,28 @@
 
 <h5><%= history[zips[0]].trip.title %></h5>
 
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn" href="#modalDates">Change Dates</a>
+<br />
+<!-- Modal Structure -->
+<div id="modalDates" class="modal">
+ <div class="modal-content">
+   <form method="POST" action="/profile/history">
+     <div class="form-group">
+       <label for="historystart">Start (MMDD)</label>
+       <input name="historystart" class="form-control" required/>
+     </div>
+     <div class="form-group">
+       <label for="historyend">End (MMDD)</label>
+       <input name="historyend" class="form-control" required/>
+     </div>
+     <div class="modal-footer">
+       <input type="submit" class="btn btn-success" />
+     </div>
+   </form>
+ </div>
+</div>
+
 <div class="weather-matrix">
   <table class="table table-striped table-bordered centered">
     <thead>
@@ -69,7 +91,7 @@
         <tr>
           <td>
             <% if(index==0){ %>
-              <%= zip %><br />(home)<br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+              <%= zip %><br />(home)
             <% } else{ %>
               <%= zip %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
             <% } %>
@@ -86,15 +108,4 @@
   </table>
 </div>
 
-<form method="POST" action="/profile/history">
-  <div class="form-group">
-    <label for="historystart">Start (MMDD)</label>
-    <input name="historystart" class="form-control" required/>
-  </div>
-  <div class="form-group">
-    <label for="historyend">End (MMDD)</label>
-    <input name="historyend" class="form-control" required/>
-  </div>
-  <input type="submit" class="btn btn-success" />
-</form>
 <br />
