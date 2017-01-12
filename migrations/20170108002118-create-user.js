@@ -29,6 +29,12 @@ module.exports = {
       zip: {
         type: Sequelize.INTEGER
       },
+      historystart: {
+        type: Sequelize.STRING
+      },
+      historyend: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

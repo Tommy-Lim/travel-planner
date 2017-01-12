@@ -17,9 +17,19 @@ router.post('/signup', function(req, res, next){
   var zip = req.body.zip;
   var image = req.body.image;
   var age = req.body.age;
+  var historystart = req.body.historystart;
+  var historyend = req.body.historyend;
 
   if(!image){
     image = "/img/user.png";
+  }
+
+  if(!historystart){
+    historystart = "0701";
+  }
+
+  if(!historyend){
+    historyend = "0801";
   }
 
   db.user.findOrCreate({
@@ -31,7 +41,9 @@ router.post('/signup', function(req, res, next){
       password: password,
       zip: zip,
       image: image,
-      age: age
+      age: age,
+      historystart: historystart,
+      historyend: historyend
     }
   }).spread(function(user, created){
     if(created){

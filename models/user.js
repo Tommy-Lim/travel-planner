@@ -52,11 +52,25 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       validate: {
         isNumeric: {
-          msg: 'Invaled age'
+          msg: 'Invalid zip'
         },
+        len: {
+          args: [5],
+          msg: 'ZIP needs to be 5 numbers long'
+        }
 
       }
     },
+    historystart: {
+      type: DataTypes.STRING,
+      validate: {
+      }
+    },
+    historyend: {
+      type: DataTypes.STRING,
+      validate: {
+      }
+    }
   },{
     hooks:{
       beforeCreate: function(createdUser, options, callback){
