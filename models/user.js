@@ -49,16 +49,8 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     zip: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       validate: {
-        isNumeric: {
-          msg: 'Invalid zip'
-        },
-        len: {
-          args: [5],
-          msg: 'ZIP needs to be 5 numbers long'
-        }
-
       }
     },
     historystart: {

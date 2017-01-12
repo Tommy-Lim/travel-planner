@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       zip: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       historystart: {
         type: Sequelize.STRING

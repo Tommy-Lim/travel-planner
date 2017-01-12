@@ -22,7 +22,7 @@ router.post('/signup', function(req, res, next){
   var historyend = req.body.historyend;
 
   if(!zip){
-    zip = 98115;
+    zip = "98101.1.99999";
   }
 
   if(!cityname){
