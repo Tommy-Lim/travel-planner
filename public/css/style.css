@@ -1,12 +1,16 @@
+body{
+  padding-top: 40px;
+}
+
 .nav-partial{
   display: flex;
   justify-content: space-around;
   background-color: rgb(50, 50, 50);
-  height: 40px;
 }
+
 .nav-partial a{
   height: 100%;
-  padding-top: 10px;
+  padding-top: 15px;
 }
 
 .nav-partial a:hover{
@@ -23,4 +27,13 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+
+.footer-partial{
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(50, 50, 50);
+  height: 100px;
+  color: white;
+  margin-top: 10px;
 }
