@@ -35,6 +35,8 @@ body{
   background-color: rgb(50, 50, 50);
   height: 100px;
   color: white;
+  position: relative;
+  top: 10px;
 }
 
 .weather-icon{
@@ -62,8 +64,14 @@ body{
   }
 }
 
-@media (max-width: 710px) {
-  .button-text{
+@media (max-width: 910px) {
+  #dropdown-button{
+    display: none;
+  }
+}
+
+@media (min-width: 910px) {
+  #dropdown1-button{
     display: none;
   }
 }
@@ -81,4 +89,8 @@ body{
 #modalDates, #modalSettings{
   background-color: rgba(0,0,0,0);
   box-shadow: none;
+}
+
+#dropdown1{
+  width: 100px;
 }

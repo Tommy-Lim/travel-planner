@@ -83,13 +83,6 @@ router.get('/', isLoggedIn, function(req, res){
 
 });
 
-// SHOWS SETTINGS FORM FOR EDITING
-router.get('/settings', isLoggedIn, function(req, res){
-  res.render('profile/settings', {
-    user: req.user
-  });
-});
-
 // SUBMITS EDIT FORM AND UPDATES SETTINGS
 router.post('/settings', isLoggedIn, function(req, res){
   db.user.findById(req.user.id).then(function(user){
