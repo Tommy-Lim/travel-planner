@@ -35,6 +35,7 @@ router.get('/', isLoggedIn, function(req, res){
 
   function getCities(zips, callback){
     cities =[];
+    cities.push(req.user.cityname);
     zips.forEach(function(zip){
       db.city.find({
         where: {
