@@ -112,27 +112,6 @@ router.post('/history', isLoggedIn, function(req, res){
   });
 });
 
-// ADDS A DESTINATION CITY TO USER IN DATABASE
-router.post('/:zmw', isLoggedIn, function(req, res){
-  var zmw = req.params.zmw;
-
-  db.user.findOrCreate({
-    where: {
-      email: req.user.email
-    }
-  }).spread(function(user, created){
-    db.city.findOrCreate({
-      where: {
-        zip: zmw
-      }
-    }).spread(function(city, created){
-      // TODO: why won't this flash message work?
-      req.flash('success', 'Destination added');
-      user.addCity(city);
-      res.redirect('/profile');
-    });
-  });
-});
 
 // DELETE CITY FROM USER_CITIES AND CITIES IF ONLY ASSOCIATION
 router.get('/delete/:zip', function(req, res){
@@ -157,6 +136,55 @@ router.get('/delete/:zip', function(req, res){
     });
   });
 });
+
+// ADDS A HOME CITY TO USER IN DATABASE
+router.post('/home/:zmw', isLoggedIn, function(req, res){
+  var zmw = req.params.zmw.split('=')[0];
+  var cityname = req.params.zmw.split('=')[1];
+
+  db.user.findOrCreate({
+    where: {
+      email: req.user.email
+    }
+  }).spread(function(user, created){
+    user.update({
+      zip: zmw,
+      cityname: cityname
+    }). then(function(){
+      // TODO: why won't this flash message work?
+      req.flash('success', 'Home updated');
+      res.redirect('/profile');
+    });
+  });
+});
+
+// ADDS A DESTINATION CITY TO USER IN DATABASE
+router.post('/:zmw', isLoggedIn, function(req, res){
+  var zmw = req.params.zmw.split('=')[0];
+  var cityname = req.params.zmw.split('=')[1];
+
+  db.user.findOrCreate({
+    where: {
+      email: req.user.email
+    }
+  }).spread(function(user, created){
+    db.city.findOrCreate({
+      where: {
+        zip: zmw
+      },
+      defaults: {
+        cityname: cityname
+      }
+    }).spread(function(city, created){
+      // TODO: why won't this flash message work?
+      req.flash('success', 'Destination added');
+      user.addCity(city);
+      res.redirect('/profile');
+    });
+  });
+});
+
+
 
 
 module.exports = router;
