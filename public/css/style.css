@@ -82,7 +82,18 @@ footer.page-footer{
   color: white;
 }
 
-.input-field input[type=text]:focus {
-     border-bottom: 1px solid blue;
-     box-shadow: 0 1px 0 0 blue;
-   }
+.alert.alert-danger{
+  background-color: rgba(175, 0, 0, 0.6);
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.alert.alert-success{
+  background-color: rgba(0, 175, 0, 0.6);
+  color: white;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}

@@ -46,9 +46,9 @@
             <tr>
               <td>
                 <% if(index==0){ %>
-                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br />(home)
+                  <a href="/cities/details/<%= zip %>=<%= cities[index] %>"><%= cities[index] %></a><br />(home)
                 <% } else{ %>
-                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br /><a href="/profile/delete/<%= zip %>"><i class="fa red-text fa-trash-o" aria-hidden="true"></i></a>
+                  <a href="/cities/details/<%= zip %>=<%= cities[index] %>"><%= cities[index] %></a><br /><a href="/profile/delete/<%= zip %>"><i class="fa red-text fa-trash-o" aria-hidden="true"></i></a>
                 <% } %>
               </td>
               <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
@@ -90,9 +90,9 @@
             <tr>
               <td>
                 <% if(index==0){ %>
-                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br />(home)
+                  <a href="/cities/details/<%= zip %>=<%= cities[index] %>"><%= cities[index] %></a><br />(home)
                 <% } else{ %>
-                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br /><a href="/profile/delete/<%= zip %>"><i class="fa red-text fa-trash-o" aria-hidden="true"></i></a>
+                  <a href="/cities/details/<%= zip %>=<%= cities[index] %>"><%= cities[index] %></a><br /><a href="/profile/delete/<%= zip %>"><i class="fa red-text fa-trash-o" aria-hidden="true"></i></a>
                 <% } %>
               </td>
               <td><%= history[zip].trip.cloud_cover.cond %></td>
@@ -121,7 +121,7 @@
       <label for="historyend">End (MMDD)</label>
       <input name="historyend" class="form-control" required/>
     </div>
-    <input type="submit" class="btn" />
+    <input type="submit" class="btn blue" />
    </form>
  </div>
 </div>
@@ -141,7 +141,7 @@
       </div>
       <br />
       <hr />
-      <input type="submit" class="btn"/>
+      <input type="submit" class="btn blue"/>
     </form>
   </div>
 </div>
