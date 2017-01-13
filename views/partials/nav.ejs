@@ -2,30 +2,31 @@
   <nav>
     <div class="nav-wrapper grey darken-3">
       <a href="/" class="brand-logo orange-text">Travel Easy</span></a>
+      <a href="/cities/" class="right hide-on-large-only" style="margin-right:18px; margin-top:4px"><i class="fa fa-search fa-2x" aria-hidden="true"></i></a>
       <a href="#" data-activates="side-nav" class="button-collapse"><i class="fa fa-bars fa-2x"></i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</span></a></li>
+        <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</a></li>
         <% if(!currentUser){ %>
-          <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</span></a></li>
-          <li><a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log in</span></a></li>
+          <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</a></li>
+          <li><a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log in</a></li>
         <% } else{ %>
           <li><a href="/profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></span></a></li>
           <!-- Modal Trigger -->
-          <li><a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> Settings</span></a></li>
-          <li><a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Log out</span></a></li>
+          <li><a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Log out</a></li>
         <% } %>
       </ul>
 
       <ul class="side-nav" id="side-nav">
-        <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</span></a></li>
+        <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</a></li>
         <% if(!currentUser){ %>
-          <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</span></a></li>
-          <li><a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log in</span></a></li>
+          <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</a></li>
+          <li><a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log in</a></li>
         <% } else{ %>
           <li><a href="/profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></span></a></li>
           <!-- Modal Trigger -->
-          <li><a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> Settings</span></a></li>
-          <li><a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Log out</span></a></li>
+          <li><a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> Settings</a></li>
+          <li><a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Log out</a></li>
         <% } %>
       </ul>
 
