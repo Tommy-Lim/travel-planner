@@ -45,18 +45,18 @@
             <tr>
               <td>
                 <% if(index==0){ %>
-                  <%= cities[index] %><br />(home)
+                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br />(home)
                 <% } else{ %>
-                  <%= cities[index] %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br /><a href="/profile/delete/<%= zip %>"><i class="fa red-text fa-trash-o" aria-hidden="true"></i></a>
                 <% } %>
               </td>
               <% weather[zip].forecast.simpleforecast.forecastday.forEach(function(item){ %>
                 <td>
                   <img class="weather-icon" src="<%- item.icon_url %>" />
                   <br />
-                  <%- item.low.fahrenheit %>&#8457
-                  <br />
                   <%- item.high.fahrenheit %>&#8457
+                  <br />
+                  <%- item.low.fahrenheit %>&#8457
                 </td>
               <% }); %>
             </tr>
@@ -89,9 +89,9 @@
             <tr>
               <td>
                 <% if(index==0){ %>
-                  <%= cities[index] %><br />(home)
+                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br />(home)
                 <% } else{ %>
-                  <%= cities[index] %><br /><a href="/profile/delete/<%= zip %>"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                  <a href="/cities/details/<%= zip %>/<%= cities[index] %>"><%= cities[index] %></a><br /><a href="/profile/delete/<%= zip %>"><i class="fa red-text fa-trash-o" aria-hidden="true"></i></a>
                 <% } %>
               </td>
               <td><%= history[zip].trip.cloud_cover.cond %></td>
