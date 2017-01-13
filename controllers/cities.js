@@ -54,9 +54,17 @@ router.get('/historical/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
 
-  //MMDD TODO: make this user input
-  startDate = "0701";
-  endDate = "0714";
+  // default to summer
+  if(!req.session.startDate){
+    req.session.startDate = "0701";
+  }
+
+  if(!req.session.endDate){
+    req.session.endDate = "0801";
+  }
+
+  var startDate = req.session.startDate;
+  var endDate = req.session.endDate;
 
   var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
 
@@ -64,7 +72,32 @@ router.get('/historical/:zip', function(req, res){
     var weather = JSON.parse(body);
     res.render('cities/historical', {
       weather: weather,
-      name: name
+      name: name,
+      zip: zip
+    });
+  });
+
+});
+
+router.post('/historical/:zip', function(req, res){
+  var zip = req.params.zip.split('=')[0];
+  var name = req.params.zip.split('=')[1];
+
+  //MMDD TODO: make this user input
+  var startDate = req.body.historystart;
+  var endDate = req.body.historyend;
+
+  req.session.startDate = startDate;
+  req.session.endDate = endDate;
+
+  var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
+
+  request.get(url, function(error, response, body){
+    var weather = JSON.parse(body);
+    res.render('cities/historical', {
+      weather: weather,
+      name: name,
+      zip: zip
     });
   });
 

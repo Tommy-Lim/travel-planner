@@ -70,7 +70,7 @@
 <div class="card">
   <div class="card-content">
     <div class="card-title">
-      <%= history[zips[0]].trip.title.slice(23, history[zips[0]].trip.title.length) %><a href="#modalDates"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+      <%= history[zips[0]].trip.title.slice(23, history[zips[0]].trip.title.length) %><a href="#modalDatesProfile"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
     </div>
     <p class="grey-text">Historical</p>
     <div class="weather-matrix">
@@ -109,7 +109,7 @@
 </div>
 
 <!-- Modal Structure -->
-<div id="modalDates" class="modal">
+<div id="modalDatesProfile" class="modal">
  <div class="modal-content">
    <form method="POST" action="/profile/history">
     <div class="form-group">
