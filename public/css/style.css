@@ -61,3 +61,15 @@
   width: 200px;
   background-color: whitesmoke;
 }
+
+.parallax-container {
+  height: 30vh;
+ }
+
+footer.page-footer{
+  margin-top: 0px;
+}
+
+.parralax-img{
+  width: 100vw;
+}

@@ -10,21 +10,33 @@
     <!-- Bootstrap -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <!-- Local -->
-    <link rel="stylesheet" href="/css/style.css" />
     <!-- Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <!-- Local -->
+    <link rel="stylesheet" href="/css/style.css" />
 
   </head>
   <body>
 
-    <% include partials/alerts %>
     <% include partials/nav %>
+    <% include partials/alerts %>
 
+    <div class="parallax-container">
+      <div class="parallax">
+        <img class="parralax-img" src="http://i.imgur.com/Nj8iLAS.jpg" />
+      </div>
+    </div>
 
-    <div class="container layout-container">
-      <%- body %>
+    <div class="section white">
+      <div class="row container">
+        <%- body %>
+      </div>
+    </div>
 
+    <div class="parallax-container">
+      <div class="parallax">
+        <img class="parralax-img" src="http://i.imgur.com/QwvWhJ9.jpg" />
+      </div>
     </div>
 
     <% include partials/footer %>
