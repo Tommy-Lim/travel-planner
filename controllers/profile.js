@@ -107,7 +107,7 @@ router.get('/', isLoggedIn, function(req, res){
 
 });
 
-// SUBMITS PROFILE PIC FILE
+// UPDATES PROFILE PIC FILE
 router.post('/picture', upload.single('profilePic'), function(req, res){
   cloudinary.uploader.upload(req.file.path, function(result){
     db.user.find({
@@ -118,6 +118,7 @@ router.post('/picture', upload.single('profilePic'), function(req, res){
       user.update({
         image: result.url
       }).then(function(user){
+        req.flash('success', 'Profile picture updated');
         res.redirect('/profile');
       });
     });
