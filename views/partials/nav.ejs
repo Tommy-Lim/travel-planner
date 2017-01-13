@@ -1,53 +1,74 @@
-<div class="navbar navbar-fixed-top nav-partial">
-  <a href="/"><i class="fa fa-home fa-2x" aria-hidden="true"></i><span class="nav-text"> Home</span></a>
-  <a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i><span class="nav-text"> Search</span></a>
-  <% if(!currentUser){ %>
-    <a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i><span class="nav-text"> Sign up</span></a>
-    <a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i><span class="nav-text"> Log in</span></a>
-  <% } else{ %>
-    <a href="/profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i><span class="nav-text"> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></span></a>
-    <!-- Modal Trigger -->
-    <a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i><span class="nav-text"> Settings</span></a>
-    <a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i><span class="nav-text"> Log out</span></a>
+<div class="navbar-fixed" id="navbar-fixed">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Travel Easy</span></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars fa-2x"></i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</span></a></li>
+        <% if(!currentUser){ %>
+          <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</span></a></li>
+          <li><a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log in</span></a></li>
+        <% } else{ %>
+          <li><a href="/profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></span></a></li>
+          <!-- Modal Trigger -->
+          <li><a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> Settings</span></a></li>
+          <li><a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Log out</span></a></li>
+        <% } %>
+      </ul>
 
-    <!-- Settings Modal Structure -->
-    <div id="modalSettings" class="modal">
-     <div class="modal-content">
-       <form method="POST" action="/profile/settings" id="update-currentUser">
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</span></a></li>
+        <% if(!currentUser){ %>
+          <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</span></a></li>
+          <li><a href="/auth/login"><i class="fa fa-sign-in fa-2x" aria-hidden="true"></i> Log in</span></a></li>
+        <% } else{ %>
+          <li><a href="/profile"><i class="fa fa-user fa-2x" aria-hidden="true"></i> <% if(!currentUser.name){ %> <%= currentUser.email %> <% }else{ %> <%= currentUser.name %> <% } %></span></a></li>
+          <!-- Modal Trigger -->
+          <li><a href="#modalSettings"><i class="fa fa-cog fa-2x" aria-hidden="true"></i> Settings</span></a></li>
+          <li><a href="/auth/logout"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> Log out</span></a></li>
+        <% } %>
+      </ul>
 
-         <div class="form-group">
-           <label for="name">Name</label>
-           <input name="name" class="form-control" value="<%= currentUser.name %>" required />
-         </div>
-         <div class="form-group">
-           <label for="email">Email</label>
-           <input name="email" class="form-control" type="email" value="<%= currentUser.email %>" required />
-         </div>
-         <div class="form-group">
-           <label for="age">Age</label>
-           <input name="age" class="form-control" type="number" value="<%= currentUser.age %>" />
-         </div>
-         <div class="form-group">
-           <label for="image">Profile Image URL</label>
-           <input name="image" class="form-control"  value="<%= currentUser.image %>" />
-         </div>
-         <div class="form-group">
-           <label for="historystart">Travel/Historical Start (MMDD)</label>
-           <input name="historystart" class="form-control" type="number" value="<%= currentUser.historystart %>" />
-         </div>
-         <div class="form-group">
-           <label for="historyend">Travel/Historical End (MMDD)</label>
-           <input name="historyend" class="form-control"  value="<%= currentUser.historyend %>" />
-         </div>
-
-         <input type="submit" class="btn btn-success" />
-
-       </form>
-     </div>
     </div>
-
-
-
-
-  <% } %>
+  </nav>
 </div>
+
+<% if(!currentUser){ %>
+
+<% } else{ %>
+  <!-- Settings Modal Structure -->
+  <div id="modalSettings" class="modal">
+   <div class="modal-content">
+     <form method="POST" action="/profile/settings" id="update-currentUser">
+
+       <div class="form-group">
+         <label for="name">Name</label>
+         <input name="name" class="form-control" value="<%= currentUser.name %>" required />
+       </div>
+       <div class="form-group">
+         <label for="email">Email</label>
+         <input name="email" class="form-control" type="email" value="<%= currentUser.email %>" required />
+       </div>
+       <div class="form-group">
+         <label for="age">Age</label>
+         <input name="age" class="form-control" type="number" value="<%= currentUser.age %>" />
+       </div>
+       <div class="form-group">
+         <label for="image">Profile Image URL</label>
+         <input name="image" class="form-control"  value="<%= currentUser.image %>" />
+       </div>
+       <div class="form-group">
+         <label for="historystart">Travel/Historical Start (MMDD)</label>
+         <input name="historystart" class="form-control" type="number" value="<%= currentUser.historystart %>" />
+       </div>
+       <div class="form-group">
+         <label for="historyend">Travel/Historical End (MMDD)</label>
+         <input name="historyend" class="form-control"  value="<%= currentUser.historyend %>" />
+       </div>
+
+       <input type="submit" class="btn btn-success" />
+
+     </form>
+   </div>
+  </div>
+<% }; %>

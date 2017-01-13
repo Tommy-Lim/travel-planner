@@ -1,14 +1,12 @@
 <h4>Search</h4>
 
-<div class="well">
-
-  <form method="GET" action="/cities/search">
-    <div class="form-group">
-      <label for="city-search">Search for city</label>
-      <input class="form-control" name="search"/>
+<nav>
+    <div class="nav-wrapper light-blue lighten-2">
+      <form method="GET" action="/cities/search">
+        <div class="input-field">
+          <input type="search" name="search" required>
+          <label for="search"><i class="fa fa-search" aria-hidden="true"></i></label>
+        </div>
+      </form>
     </div>
-    <button type="submit" class="btn btn-success blue"> <i class="fa fa-search" aria-hidden="true"></i> Search</button>
-
-  </form>
-
-</div>
+  </nav>

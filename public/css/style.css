@@ -1,22 +1,3 @@
-body{
-  padding-top: 40px;
-}
-
-.nav-partial{
-  display: flex;
-  justify-content: space-around;
-  background-color: rgb(50, 50, 50);
-}
-
-.nav-partial a{
-  height: 50px;
-  padding-top: 10px;
-}
-
-.nav-partial a:hover{
-  background-color: rgb(150, 150, 150);
-}
-
 .profile-pic{
   height: 100px;
   width: 100px;
@@ -33,7 +14,7 @@ body{
   display: flex;
   justify-content: space-around;
   background-color: rgb(50, 50, 50);
-  height: 100px;
+  height: 50px;
   color: white;
   position: relative;
   top: 10px;
@@ -58,24 +39,6 @@ body{
   max-width: 700px;
 }
 
-@media (max-width: 600px) {
-  .nav-text{
-    display: none;
-  }
-}
-
-@media (max-width: 910px) {
-  #dropdown-button{
-    display: none;
-  }
-}
-
-@media (min-width: 910px) {
-  #dropdown1-button{
-    display: none;
-  }
-}
-
 .home-container{
   display: flex;
   flex-direction: column;
@@ -86,11 +49,10 @@ body{
   height: 30px;
 }
 
-#modalDates, #modalSettings{
-  background-color: rgba(0,0,0,0);
-  box-shadow: none;
+.card-action a{
+  display: inline-block;
 }
 
-#dropdown1{
-  width: 100px;
+#navbar-fixed{
+  z-index: 999;
 }
