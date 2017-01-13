@@ -6,7 +6,9 @@
       <%- currentUser.name %>
     </div>
     <div class="profile-container">
-      <img src="<%- currentUser.image %>" class="profile-pic">
+      <div>
+        <a href="#modalImageUpload"><img src="<%- currentUser.image %>" class="profile-pic"><i id="editPic" class="fa fa-pencil" aria-hidden="true"></i></a>
+      </div>
       <span>
         <p><strong>Home</strong></p>
         <p><%= currentUser.cityname %></p>
@@ -19,19 +21,12 @@
               <%= city.cityname %> |
             <% } %>
           <% }) %>
-          <% if(user.cities.length==0){%> None added <% }; %>
+          <% if(user.cities.length==0){%> None yet - Search then add! <% }; %>
         </p>
       </span>
     </div>
   </div>
 </div>
-
-
-<form enctype="multipart/form-data" action="/profile/picture" method="POST">
-  <input type="file" name="profilePic">
-  <input type="submit" class="btn btn-primary">
-</form>
-
 
 <div class="card">
   <div class="card-content">
@@ -114,7 +109,7 @@
   </div>
 </div>
 
-<!-- Modal Structure -->
+<!-- Modal Structure: history/travel dates change -->
 <div id="modalDatesProfile" class="modal">
  <div class="modal-content">
    <form method="POST" action="/profile/history">
@@ -126,7 +121,27 @@
       <label for="historyend">End (MMDD)</label>
       <input name="historyend" class="form-control" required/>
     </div>
-    <input type="submit" class="btn btn-success" />
+    <input type="submit" class="btn" />
    </form>
  </div>
+</div>
+
+<!-- Modal Structure: image upload -->
+<div id="modalImageUpload" class="modal">
+  <div class="modal-content">
+    <form enctype="multipart/form-data" action="/profile/picture" method="POST">
+      <div class="file-field input-field">
+        <div class="btn blue lighten-1">
+          <span>Image</span>
+          <input type="file" name="profilePic" />
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" />
+        </div>
+      </div>
+      <br />
+      <hr />
+      <input type="submit" class="btn"/>
+    </form>
+  </div>
 </div>

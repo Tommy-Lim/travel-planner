@@ -117,7 +117,7 @@ router.post('/picture', upload.single('profilePic'), function(req, res){
         image: result.url
       }).then(function(user){
         console.log('success uploading, user: ', user);
-        res.redirect('/');
+        res.redirect('/profile');
       });
     });
   });
