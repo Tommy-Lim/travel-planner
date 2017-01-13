@@ -7,6 +7,10 @@ var isLoggedIn = require('../middleware/isLoggedIn');
 var db = require('../models');
 var router = express.Router();
 var async = require('async');
+var cloudinary = require('cloudinary');
+var multer = require('multer');
+var upload = multer({dest: '../uploads/'});
+
 
 // DIRECTS A USER TO THEIR PROFILE
 router.get('/', isLoggedIn, function(req, res){
@@ -97,6 +101,26 @@ router.get('/', isLoggedIn, function(req, res){
     });
   });
 
+});
+
+// SUBMITS PROFILE PIC FILE
+router.post('/picture', upload.single('profilePic'), function(req, res){
+  cloudinary.uploader.upload(req.file.path, function(result){
+    console.log("result: ", result.url);
+    db.user.find({
+      where: {
+        email: req.user.email
+      }
+    }).then(function(user){
+      console.log('user: ', user);
+      user.update({
+        image: result.url
+      }).then(function(user){
+        console.log('success uploading, user: ', user);
+        res.redirect('/');
+      });
+    });
+  });
 });
 
 // SUBMITS EDIT FORM AND UPDATES SETTINGS
