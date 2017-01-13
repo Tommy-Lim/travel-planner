@@ -18,6 +18,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(ejsLayouts);
 app.use(express.static(__dirname + '/public/'));
+app.use(express.static(__dirname + '/uploads/'));
 
 app.use(function(req, res, next){
   res.locals.moment = moment;
