@@ -9,7 +9,7 @@ var router = express.Router();
 var async = require('async');
 var cloudinary = require('cloudinary');
 var multer = require('multer');
-var upload = multer({dest: '../uploads/'});
+var upload = multer({dest: __dirname + '/uploads/'});
 
 
 // DIRECTS A USER TO THEIR PROFILE
