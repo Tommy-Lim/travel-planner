@@ -49,7 +49,11 @@ router.get('/', isLoggedIn, function(req, res){
           zip: zip
         }
       }).then(function(city){
-        cities.push(city.cityname);
+        if(!city){
+
+        } else{
+          cities.push(city.cityname);
+        }
       });
     });
     callback(null, zips);
@@ -106,17 +110,14 @@ router.get('/', isLoggedIn, function(req, res){
 // SUBMITS PROFILE PIC FILE
 router.post('/picture', upload.single('profilePic'), function(req, res){
   cloudinary.uploader.upload(req.file.path, function(result){
-    console.log("result: ", result.url);
     db.user.find({
       where: {
         email: req.user.email
       }
     }).then(function(user){
-      console.log('user: ', user);
       user.update({
         image: result.url
       }).then(function(user){
-        console.log('success uploading, user: ', user);
         res.redirect('/profile');
       });
     });
