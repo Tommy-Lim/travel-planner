@@ -4,13 +4,15 @@
 
 <h4><%= name %></h4>
 
-<div class="well">
-  <p>City: <%= details.current_observation.display_location.city %></p>
-  <p>State: <%= details.current_observation.display_location.state %></p>
-  <p>Country: <%= details.current_observation.display_location.country_iso3166 %></p>
-  <p>Timezone: <%= details.current_observation.local_tz_short %></p>
-  <p>Latitude: <%= details.current_observation.display_location.latitude %></p>
-  <p>Longitude: <%= details.current_observation.display_location.longitude %></p>
+<div class="card grey lighten-4">
+  <div class="card-content">
+    <p>City: <%= details.current_observation.display_location.city %></p>
+    <p>State: <%= details.current_observation.display_location.state %></p>
+    <p>Country: <%= details.current_observation.display_location.country_iso3166 %></p>
+    <p>Timezone: <%= details.current_observation.local_tz_short %></p>
+    <p>Latitude: <%= details.current_observation.display_location.latitude %></p>
+    <p>Longitude: <%= details.current_observation.display_location.longitude %></p>
+  </div>
 </div>
 
 <button class="btn btn-default btn-xs back-button grey lignten-2 black-text"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>

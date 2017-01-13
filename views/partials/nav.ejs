@@ -1,8 +1,8 @@
 <div class="navbar-fixed" id="navbar-fixed">
   <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Travel Easy</span></a>
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="fa fa-bars fa-2x"></i></a>
+    <div class="nav-wrapper grey darken-3">
+      <a href="/" class="brand-logo orange-text">Travel Easy</span></a>
+      <a href="#" data-activates="side-nav" class="button-collapse"><i class="fa fa-bars fa-2x"></i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</span></a></li>
         <% if(!currentUser){ %>
@@ -16,7 +16,7 @@
         <% } %>
       </ul>
 
-      <ul class="side-nav" id="mobile-demo">
+      <ul class="side-nav" id="side-nav">
         <li><a href="/cities/"><i class="fa fa-search fa-2x" aria-hidden="true"></i> Search</span></a></li>
         <% if(!currentUser){ %>
           <li><a href="/auth/signup"><i class="fa fa-user-plus fa-2x" aria-hidden="true"></i> Sign up</span></a></li>

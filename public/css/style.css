@@ -56,3 +56,7 @@
 #navbar-fixed{
   z-index: 999;
 }
+
+#side-nav{
+  width: 200px;
+}

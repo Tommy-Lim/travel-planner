@@ -4,25 +4,33 @@
 
 <h3><%= name %></h3>
 
-<h4>10-day forecast</h4>
 
-<div class="weather-matrix">
-  <table class="table table-striped table-bordered">
-    <thead>
-      <th>Day</th>
-      <th>Cond.</th>
-      <th>Low</th>
-      <th>High</th>
-    </thead>
-    <% weather.forecast.simpleforecast.forecastday.forEach(function(item){ %>
-      <tr>
-        <td><%= item.date.weekday.slice(0,3) %></td>
-        <td><img class="weather-icon" src="<%- item.icon_url %>" /></td>
-        <td><%= item.low.fahrenheit %>&#8457</td>
-        <td><%= item.high.fahrenheit %>&#8457</td>
-      </tr>
-    <% }); %>
-  </table>
+<div class="card">
+
+  <div class="card-content">
+    <div class="card-title">
+      10-day forecast
+    </div>
+    <div class="weather-matrix">
+      <table class="striped bordered centered">
+        <thead>
+          <th>Day</th>
+          <th>Cond.</th>
+          <th>Low</th>
+          <th>High</th>
+        </thead>
+        <% weather.forecast.simpleforecast.forecastday.forEach(function(item){ %>
+          <tr>
+            <td><%= item.date.weekday.slice(0,3) %></td>
+            <td><img class="weather-icon" src="<%- item.icon_url %>" /></td>
+            <td><%= item.low.fahrenheit %>&#8457</td>
+            <td><%= item.high.fahrenheit %>&#8457</td>
+          </tr>
+        <% }); %>
+      </table>
+    </div>
+  </div>
 </div>
+
 
 <button class="btn btn-default btn-xs back-button grey lignten-2 black-text"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
