@@ -44,7 +44,8 @@ router.get('/forecast/:zip', function(req, res){
     var weather = JSON.parse(body);
     res.render('cities/forecast', {
       weather: weather,
-      name: name
+      name: name,
+      zip: zip
     });
   });
 
@@ -113,7 +114,8 @@ router.get('/details/:zip', function(req, res){
     var details = JSON.parse(body);
     res.render('cities/details', {
       details: details,
-      name: name
+      name: name,
+      zip: zip
     });
   });
 

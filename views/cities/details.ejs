@@ -2,16 +2,27 @@
 
 <button class="btn btn-default btn-xs back-button grey lignten-2 black-text"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
 
-<h4><%= name %></h4>
+<br />
+<br />
 
 <div class="card grey lighten-4">
   <div class="card-content">
+    <div class="card-title">
+      <%= name %>
+    </div>
     <p>City: <%= details.current_observation.display_location.city %></p>
     <p>State: <%= details.current_observation.display_location.state %></p>
     <p>Country: <%= details.current_observation.display_location.country_iso3166 %></p>
     <p>Timezone: <%= details.current_observation.local_tz_short %></p>
     <p>Latitude: <%= details.current_observation.display_location.latitude %></p>
     <p>Longitude: <%= details.current_observation.display_location.longitude %></p>
+    <div class="card-action">
+      <a href="/profile/home/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Home</a>
+      <a href="/profile/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Destination</a>
+      <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
+      <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
+      <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
+    </div>
   </div>
 </div>
 

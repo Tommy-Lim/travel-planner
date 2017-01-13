@@ -1,11 +1,30 @@
 <% include ../partials/search %>
 
 <button class="btn btn-default btn-xs back-button grey lignten-2 black-text"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+<br />
+<br />
 
-<h3><%= name %></h3>
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">
+      <%= name %>
+    </div>
+    <p>Cloud cover: <%- weather.trip.cloud_cover.cond %></p>
+    <div class="card-action">
+      <a href="/profile/home/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Home</a>
+      <a href="/profile/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Destination</a>
+      <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
+      <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
+      <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
+    </div>
+  </div>
+</div>
+
+<br />
+
 <h4><%- weather.trip.title.slice(23, weather.trip.title.length) %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
 <p class="grey-text">Historical</p>
-<p>Cloud cover: <%- weather.trip.cloud_cover.cond %></p>
+
 <div class="card">
   <div class="card-content">
     <div class="card-title">
