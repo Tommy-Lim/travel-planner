@@ -12,6 +12,9 @@ var db = require('./models');
 var app = express();
 var session = require('express-session');
 var flash = require('connect-flash');
+var cloudinary = require('cloudinary');
+var multer = require('multer');
+var upload = multer({dest: '../uploads/'});
 
 app.set('view engine', 'ejs');
 
