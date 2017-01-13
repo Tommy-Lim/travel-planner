@@ -55,17 +55,25 @@ router.get('/historical/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
 
-  // default to summer
-  if(!req.session.startDate){
-    req.session.startDate = "0701";
+  var startDate;
+  var endDate;
+
+  //set dates to user or session or default settings in order
+  if(req.user && req.user.historystart){
+    startDate = req.user.historystart;
+  } else if(req.session && req.session.startDate){
+    startDate = req.session.startDate;
+  } else{
+    startDate = "0701";
   }
 
-  if(!req.session.endDate){
-    req.session.endDate = "0801";
+  if(req.user && req.user.historyend){
+    endDate = req.user.historyend;
+  } else if(req.session && req.session.endDate){
+    endDate = req.session.endDate;
+  } else{
+    endDate = "0801";
   }
-
-  var startDate = req.session.startDate;
-  var endDate = req.session.endDate;
 
   var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
 

@@ -16,6 +16,7 @@
     <p>Timezone: <%= details.current_observation.local_tz_short %></p>
     <p>Latitude: <%= details.current_observation.display_location.latitude %></p>
     <p>Longitude: <%= details.current_observation.display_location.longitude %></p>
+    <br />
     <div class="card-action">
       <a href="/profile/home/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Home</a>
       <a href="/profile/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Destination</a>
