@@ -12,8 +12,8 @@
     <p>Cloud cover: <%- weather.trip.cloud_cover.cond %></p>
     <br />
     <div class="card-action">
-      <a href="/profile/home/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Home</a>
-      <a href="/profile/<%- zip %>=<%- name %>" class=""> <i class="fa fa-plus" aria-hidden="true"></i> Destination</a>
+      <a href="/profile/home/<%- zip %>=<%- name %>" class="blue-text"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
+      <a href="/profile/<%- zip %>=<%- name %>" class="blue-text"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
       <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
       <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
       <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
@@ -24,7 +24,7 @@
 <br />
 
 <h4><%- weather.trip.title.slice(23, weather.trip.title.length) %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
-<p class="grey-text">Historical</p>
+<p class="grey-text">Historical (5-yr period average, 30-day max range)</p>
 
 <div class="card">
   <div class="card-content">
