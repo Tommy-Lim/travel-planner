@@ -30,12 +30,12 @@ router.get('/', isLoggedIn, function(req, res){
       include: [db.city]
     }).then(function(user){
       dbUser = user;
+      // add the home zip from user
+      zips.push(req.user.zip);
       // add the destination zips from users_cities
       user.cities.forEach(function(city){
         zips.push(city.zip);
       });
-      // add the home zip from user
-      zips.unshift(req.user.zip);
       callback(null, zips);
     });
   }
