@@ -11,7 +11,7 @@
       </div>
       <span>
         <p><strong>Home</strong></p>
-        <p><%= currentUser.cityname %></p>
+        <p><%= currentUser.cityname %> <a href="/cities"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
         <p><strong>Destinations</strong><p>
         <p>
           <% if(!user.cities||user.cities.length==0){%>
@@ -25,6 +25,7 @@
               <% } %>
             <% }) %>
           <% }; %>
+          <a href="/cities"><i class="fa fa-plus" aria-hidden="true"></i></a>
         </p>
       </span>
     </div>
@@ -65,6 +66,19 @@
               <% }); %>
             </tr>
           <% }); %>
+          <tr>
+            <td><a href="/cities">Add Destination<br /><i class="fa fa-plus blue-text" aria-hidden="true"></i></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -106,6 +120,15 @@
               <td><%= history[zip].trip.dewpoint_high.avg.F %>&#8457</td>
             </tr>
           <% }); %>
+          <tr>
+            <td><a href="/cities">Add Destination<br /><i class="fa fa-plus blue-text" aria-hidden="true"></i></a></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </div>
