@@ -7,7 +7,7 @@
     </div>
     <div class="profile-container">
       <div class="card-panel hoverable" id="profile-card">
-        <a href="#modalImageUpload"><img src="<%- currentUser.image %>" class="profile-pic"><i id="editPic" class="fa fa-pencil" aria-hidden="true"></i></a>
+        <a href="#modalImageUpload"><img src="<%- currentUser.image %>" class="profile-pic"><i id="editPic" class="fa fa-pencil blue-text" aria-hidden="true"></i></a>
       </div>
       <span>
         <p><strong>Home</strong></p>
@@ -25,7 +25,7 @@
               <% } %>
             <% }) %>
           <% }; %>
-          <a href="/cities"><i class="fa fa-plus" aria-hidden="true"></i></a>
+          <a href="/cities" class="orange-text"><i class="fa fa-plus orange-text" aria-hidden="true"></i></a>
         </p>
       </span>
     </div>
@@ -35,7 +35,7 @@
 <div class="card">
   <div class="card-content">
     <div class="card-title">
-      10-day Forecasts
+      10-day Forecast
     </div>
     <div class="weather-matrix">
       <table class="bordered striped centered">
@@ -67,7 +67,7 @@
             </tr>
           <% }); %>
           <tr>
-            <td><a href="/cities">Add Destination<br /><i class="fa fa-plus blue-text" aria-hidden="true"></i></a></td>
+            <td><a href="/cities" class="orange-text">Add Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
             <td></td>
             <td></td>
             <td></td>
@@ -88,19 +88,21 @@
 <div class="card">
   <div class="card-content">
     <div class="card-title">
-      <%= history[zips[0]].trip.title.slice(23, history[zips[0]].trip.title.length) %><a href="#modalDatesProfile"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+      Historical Weather
     </div>
-    <p class="grey-text">Historical (5-yr period average, 30-day max range)</p>
+    <p><%= history[zips[0]].trip.period_of_record.date_end.date.monthname %> <%= history[zips[0]].trip.period_of_record.date_end.date.day %> - <%= history[zips[0]].trip.period_of_record.date_start.date.monthname %> <%= history[zips[0]].trip.period_of_record.date_start.date.day %><a href="#modalDatesProfile"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p class="grey-text">5-yr period average, 30-day max range</p>
+    <br />
     <div class="weather-matrix">
       <table class="bordered striped centered">
         <thead>
           <th></th>
           <th>Cloud cover</th>
-          <th>Low Temp Avg.</th>
-          <th>High Temp Avg.</th>
-          <th>Precip. Avg.</th>
-          <th>Low Dewpoint Avg.</th>
-          <th>High dewpoint Avg.</th>
+          <th>Low Temp<br />Avg.</th>
+          <th>High Temp<br />Avg.</th>
+          <th>Precip.<br />Avg.</th>
+          <th>Low Dewpoint<br />Avg.</th>
+          <th>High dewpoint<br />Avg.</th>
         </thead>
         <tbody>
           <% zips.forEach(function(zip, index){ %>
@@ -121,7 +123,7 @@
             </tr>
           <% }); %>
           <tr>
-            <td><a href="/cities">Add Destination<br /><i class="fa fa-plus blue-text" aria-hidden="true"></i></a></td>
+            <td><a href="/cities" class="orange-text">Add Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
             <td></td>
             <td></td>
             <td></td>
@@ -140,12 +142,12 @@
  <div class="modal-content">
    <form method="POST" action="/profile/history">
     <div class="form-group">
-      <label for="historystart">Start (MMDD)</label>
-      <input name="historystart" class="form-control" required/>
+      <label for="historystart">Travel/Historical Start (MMDD)</label>
+      <input name="historystart" class="form-control" placeholder="0928 = September 28" required/>
     </div>
     <div class="form-group">
-      <label for="historyend">End (MMDD)</label>
-      <input name="historyend" class="form-control" required/>
+      <label for="historyend">Travel/Historical End (MMDD)</label>
+      <input name="historyend" class="form-control" placeholder="1014 = October 14" required/>
     </div>
     <input type="submit" class="btn blue" />
    </form>

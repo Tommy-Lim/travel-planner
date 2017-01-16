@@ -12,26 +12,23 @@
     <p>Cloud cover: <%- weather.trip.cloud_cover.cond %></p>
     <br />
     <div class="card-action">
-      <a href="/profile/home/<%- zip %>=<%- name %>" class="blue-text"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
-      <a href="/profile/<%- zip %>=<%- name %>" class="blue-text"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
-      <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
-      <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
-      <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class=""> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
+      <a href="/profile/home/<%- zip %>=<%- name %>" class="tooltipped" data-position="bottom" data-delay="20" data-tooltip="Member feature"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
+      <a href="/profile/<%- zip %>=<%- name %>" class="tooltipped" data-position="bottom" data-delay="20" data-tooltip="Member feature"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
+      <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
+      <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
+      <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
     </div>
   </div>
 </div>
 
-<br />
-
-<h4><%- weather.trip.title.slice(23, weather.trip.title.length) %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></h4>
-<p class="grey-text">Historical (5-yr period average, 30-day max range)</p>
-
 <div class="card">
   <div class="card-content">
     <div class="card-title">
-      Temp, Precip, and Dewpoint
+      Historical Temp, Precip, and Dewpoint
     </div>
-
+    <p><%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %> - <%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p class="grey-text">5-yr period average, 30-day max range</p>
+    <br />
     <table class="striped bordered centered">
       <thead>
         <tr>
@@ -80,8 +77,10 @@
 <div class="card">
   <div class="card-content">
     <div class="card-title">
-      % Chance of:
+      Historical % Chance of:
     </div>
+    <p><%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %> - <%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p class="grey-text">5-yr period average, 30-day max range</p>
     <table class="striped bordered centered">
       <thead>
         <tr>
@@ -197,12 +196,12 @@
  <div class="modal-content">
    <form method="POST" action="/cities/historical/<%= zip %>=<%= name %>">
     <div class="form-group">
-      <label for="historystart">Start (MMDD)</label>
-      <input name="historystart" class="form-control" required/>
+      <label for="historystart">Travel/Historical Start (MMDD)</label>
+      <input name="historystart" class="form-control" placeholder="0928 = September 28" required/>
     </div>
     <div class="form-group">
-      <label for="historyend">End (MMDD)</label>
-      <input name="historyend" class="form-control" required/>
+      <label for="historyend">Travel/Historical End (MMDD)</label>
+      <input name="historyend" class="form-control" placeholder="1014 = October 14" required/>
     </div>
     <input type="submit" class="btn blue" />
    </form>
