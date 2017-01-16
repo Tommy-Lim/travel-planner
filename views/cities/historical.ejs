@@ -12,8 +12,13 @@
     <p>Cloud cover: <%- weather.trip.cloud_cover.cond %></p>
     <br />
     <div class="card-action">
-      <a href="/profile/home/<%- zip %>=<%- name %>" class="tooltipped" data-position="bottom" data-delay="20" data-tooltip="Member feature"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
-      <a href="/profile/<%- zip %>=<%- name %>" class="tooltipped" data-position="bottom" data-delay="20" data-tooltip="Member feature"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
+      <% if(!currentUser){ %>
+        <a href="/profile/home/<%- zip %>=<%- name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Member feature"> <i class="fa fa-lock" aria-hidden="true"></i> Make Home</a>
+        <a href="/profile/<%- zip %>=<%- name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Member feature"> <i class="fa fa-lock" aria-hidden="true"></i> Add Destination</a>
+      <% } else{ %>
+        <a href="/profile/home/<%- zip %>=<%- name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
+        <a href="/profile/<%- zip %>=<%- name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
+      <% }; %>
       <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
       <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
       <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
@@ -26,7 +31,7 @@
     <div class="card-title">
       Historical Temp, Precip, and Dewpoint
     </div>
-    <p><%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %> - <%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p><%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %> - <%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
     <p class="grey-text">5-yr period average, 30-day max range</p>
     <br />
     <table class="striped bordered centered">
@@ -79,7 +84,7 @@
     <div class="card-title">
       Historical % Chance of:
     </div>
-    <p><%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %> - <%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p><%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %> - <%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
     <p class="grey-text">5-yr period average, 30-day max range</p>
     <table class="striped bordered centered">
       <thead>

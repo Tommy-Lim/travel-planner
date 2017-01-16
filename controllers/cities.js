@@ -92,12 +92,26 @@ router.post('/historical/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
 
-  //MMDD TODO: make this user input
   var startDate = req.body.historystart;
   var endDate = req.body.historyend;
 
   req.session.startDate = startDate;
   req.session.endDate = endDate;
+
+  //set db values if logged in
+  if(!req.user){
+
+  }else{
+    db.user.findById(req.user.id).then(function(user){
+      user.update({
+        historystart: startDate,
+        historyend: endDate
+      });
+      req.flash('success', 'Travel/history dates updated');
+    }).catch(function(error){
+      res.send('error', error.message);
+    });
+  }
 
   var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
 
