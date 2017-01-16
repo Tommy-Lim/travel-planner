@@ -42,19 +42,23 @@ router.get('/', isLoggedIn, function(req, res){
 
   function getCities(zips, callback){
     cities =[];
-    cities.push(req.user.cityname);
-    zips.forEach(function(zip){
-      db.city.find({
-        where: {
-          zip: zip
-        }
-      }).then(function(city){
-        if(!city){
-
-        } else{
-          cities.push(city.cityname);
-        }
-      });
+    zips.forEach(function(zip, index){
+      if(index===0){
+        // add home city
+        cities.push(req.user.cityname);
+      } else{
+        db.city.find({
+          where: {
+            zip: zip
+          }
+        }).then(function(city){
+          if(!city){
+          } else{
+            //add destination city
+            cities.push(city.cityname);
+          }
+        });
+      }
     });
     callback(null, zips);
   }
