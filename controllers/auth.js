@@ -16,22 +16,19 @@ router.get('/signup', function(req, res){
 
 router.post('/signup', function(req, res, next){
 
+  console.log('body: ', req.body);
+  console.log('data: ', req.body.data);
   var name = req.body.name;
   var email = req.body.email;
   var password = req.body.password;
-  var cityname = req.body.cityname;
-  var image = req.body.image;
-  var age = req.body.age;
-  var historystart = req.body.historystart;
-  var historyend = req.body.historyend;
   var zip;
 
-  // AUTO GET ZIP BASED ON IP
+  // GET ZIP BASED ON LAT AND LON DATA
   function getIp(callback){
-    request.get('http://api.wunderground.com/api/'+process.env.WEATHER_APP_KEY+'/geolookup/q/autoip.json', function(error, response, body){
-      var autoIpObject = JSON.parse(body);
-      zip = autoIpObject.location.l.split(':')[1];
-      cityname = autoIpObject.location.city+", "+autoIpObject.location.state;
+    request.get('http://api.wunderground.com/api/'+process.env.WEATHER_APP_KEY+'/geolookup/q/'+lat+','+lon+'.json', function(error, response, body){
+      var results = JSON.parse(body);
+      zip = results.location.l.split(':')[1];
+      cityname = results.location.city+", "+results.location.state;
 
       callback(null, zip);
     });
