@@ -6,34 +6,23 @@ var request = require('request');
 var db = require('../models');
 var router = express.Router();
 
+// SHOW CITIES FROM SEARCH RESULTS
 router.get('/', function(req, res){
-  res.redirect('/');
-});
-
-router.get('/search', function(req, res){
 
   var query = req.query.search;
   var citiesUrl = "http://autocomplete.wunderground.com/aq?query="+query;
 
   request.get(citiesUrl, function(error, response, body){
     var cities = JSON.parse(body).RESULTS;
-    res.render('cities/search', {cities: cities});
+    res.render('cities/results', {
+      cities: cities,
+      query: req.query.search
+    });
   });
 
 });
 
-router.get('/search/:id', function(req, res){
-
-  var query = req.params.id;
-  var citiesUrl = "http://autocomplete.wunderground.com/aq?query="+query;
-
-  request.get(citiesUrl, function(error, response, body){
-    var cities = JSON.parse(body).RESULTS;
-    res.render('cities/search', {cities: cities});
-  });
-
-});
-
+// SHOW FORECAST FOR CITY
 router.get('/forecast/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
@@ -51,6 +40,7 @@ router.get('/forecast/:zip', function(req, res){
 
 });
 
+// SHOW HISTORICAL WEATHER FOR CITY
 router.get('/historical/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
@@ -88,6 +78,7 @@ router.get('/historical/:zip', function(req, res){
 
 });
 
+// CHANGE HISTORICAL START AND END DATES
 router.post('/historical/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];
@@ -113,18 +104,11 @@ router.post('/historical/:zip', function(req, res){
     });
   }
 
-  var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
-
-  request.get(url, function(error, response, body){
-    var weather = JSON.parse(body);
-    res.render('cities/historical', {
-      weather: weather,
-      name: name,
-      zip: zip
-    });
-  });
+  res.redirect('/cities/historical/'+zip+"="+name);
 
 });
+
+
 
 router.get('/details/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];

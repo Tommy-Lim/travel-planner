@@ -53,7 +53,7 @@
 }
 
 .parallax-container {
-  height: 35vh;
+  height: 30vh;
  }
 
 footer.page-footer{
@@ -95,8 +95,8 @@ footer.page-footer{
 .alert.alert-success{
   background-color: rgba(0, 175, 0, 0.6);
   color: white;
-  height: 30px;
-  line-height: 30px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
 }
 
@@ -106,4 +106,17 @@ footer.page-footer{
 
 .nav-wrapper form label .fa-search{
   line-height: inherit;
+}
+
+@media only screen and (min-width: 601px){
+  #navbar-fixed {
+    height: 128px;
+  }
+}
+
+
+@media only screen and (max-width: 601px){
+  #navbar-fixed {
+    height: 112px;
+  }
 }
