@@ -7,7 +7,7 @@ var db = require('../models');
 var router = express.Router();
 
 router.get('/', function(req, res){
-  res.render('cities/index');
+  res.redirect('/');
 });
 
 router.get('/search', function(req, res){

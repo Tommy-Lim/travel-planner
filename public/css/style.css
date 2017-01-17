@@ -38,10 +38,6 @@
   flex-direction: column;
 }
 
-.carousel-item a{
-  width:30px;
-  height: 30px;
-}
 
 .card-action a{
   display: inline-block;
@@ -102,4 +98,12 @@ footer.page-footer{
   height: 30px;
   line-height: 30px;
   text-align: center;
+}
+
+.top-bar, .top-bar li, .top-bar li a{
+  height: inherit;
+}
+
+.nav-wrapper form label .fa-search{
+  line-height: inherit;
 }

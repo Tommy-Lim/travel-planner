@@ -1,5 +1,3 @@
-<h4>Profile</h4>
-
 <div class="card">
   <div class="card-content">
     <div class="card-title">
@@ -11,7 +9,7 @@
       </div>
       <span>
         <p><strong>Home</strong></p>
-        <p><%= currentUser.cityname %> <a href="/cities"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+        <p><%= currentUser.cityname %> <a href="/"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
         <p><strong>Destinations</strong><p>
         <p>
           <% if(!user.cities||user.cities.length==0){%>
@@ -25,7 +23,7 @@
               <% } %>
             <% }) %>
           <% }; %>
-          <a href="/cities" class="orange-text"><i class="fa fa-plus orange-text" aria-hidden="true"></i></a>
+          <a href="/" class="orange-text"><i class="fa fa-plus orange-text" aria-hidden="true"></i></a>
         </p>
       </span>
     </div>
@@ -67,7 +65,7 @@
             </tr>
           <% }); %>
           <tr>
-            <td><a href="/cities" class="orange-text">Add Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
+            <td><a href="/" class="orange-text">Add Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
             <td></td>
             <td></td>
             <td></td>
@@ -123,7 +121,7 @@
             </tr>
           <% }); %>
           <tr>
-            <td><a href="/cities" class="orange-text">Add Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
+            <td><a href="/" class="orange-text">Add Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
             <td></td>
             <td></td>
             <td></td>
