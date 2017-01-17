@@ -9,32 +9,44 @@ var isLoggedIn = require('../middleware/isLoggedIn');
 var router = express.Router();
 var async = require('async');
 
-
 router.get('/signup', function(req, res){
   res.render('auth/signup');
 });
 
 router.post('/signup', function(req, res, next){
-
+  console.log('/signup reached');
   console.log('body: ', req.body);
-  console.log('data: ', req.body.data);
-  var name = req.body.name;
-  var email = req.body.email;
-  var password = req.body.password;
+
+  var data = JSON.parse(req.body.json);
+
+  console.log("ZIP:", data.locationData.zip_code);
+  console.log("name:", data.formData.name);
+
+  var name = data.formData.name;
+  var email = data.formData.email;
+  var password = data.formData.password;
+
+  var lat = data.locationData.latitude;
+  var lon = data.locationData.longitude;
+  var cityname = data.locationData.city+", "+data.locationData.region_name;
+
   var zip;
+  var image;
+  var historystart;
+  var historyend;
 
   // GET ZIP BASED ON LAT AND LON DATA
   function getIp(callback){
     request.get('http://api.wunderground.com/api/'+process.env.WEATHER_APP_KEY+'/geolookup/q/'+lat+','+lon+'.json', function(error, response, body){
       var results = JSON.parse(body);
       zip = results.location.l.split(':')[1];
-      cityname = results.location.city+", "+results.location.state;
-
+      console.log("getIp reached");
       callback(null, zip);
     });
   }
 
   function createUser(callback){
+    console.log("createUser reached");
     if(!zip){
       zip = "98101.1.99999";
     }
@@ -65,31 +77,39 @@ router.post('/signup', function(req, res, next){
         zip: zip,
         cityname: cityname,
         image: image,
-        age: age,
         historystart: historystart,
         historyend: historyend
       }
     }).spread(function(user, created){
+      console.log("user found or created");
       if(created){
-        passport.authenticate('local', {
-          successRedirect: '/profile',
-          successFlash: 'Account created and logged in'
-        })(req, res, next);
+        console.log("user created");
+        // passport.authenticate('local', {
+        //   successRedirect: '/profile',
+        //   successFlash: 'Account created and logged in'
+        // })(req, res, next);
+        req.flash('success', 'Account created and logged in');
         callback(null, user);
       } else{
+        console.log("user not created");
         req.flash('error', 'Email already exists');
-        res.redirect('/auth/signup');
-        callback(null, user);
+        // res.redirect('/auth/signup');
+        callback('Email already exists', user);
       }
     }).catch(function(error){
+      console.log("dataabse error");
       req.flash('error', error.message);
-      res.redirect('/auth/signup');
-      callback(null, user);
+      // res.redirect('/auth/signup');
+      callback("database error", error);
     });
   }
 
   async.series([getIp, createUser], function(err, results){
     console.log('finished');
+    res.send({
+      error: err,
+      results: results
+    });
   });
 
 });

@@ -25,25 +25,56 @@ $(document).ready(function(){
   // DISABLES FORM SUBMISSION TO RUN IP AND LAT/LON REQUEST FROM CLIENT, THEN RUN SERVER RQUEST
   $('#signup-form').on('submit', function(e){
     e.preventDefault();
-    console.log("signup form submitted");
 
-    // find the lat and lon of client IP
+    // CREATE FORM DATA OBJECT
+    // var element = $(this);
+    // var formData = element.serialize();
+
+    // CREATE FORM DATA OBJECT
+    var formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+
+    // FIND LOCATION DETAILS BASED ON CLIENT ZIP
     $.ajax({
       method: 'GET',
       url: "https://freegeoip.net/json/?q=",
-    }).done(function(data){
+    }).done(function(locationData){
 
-      console.log("data: ", data.zip_code);
-      console.log("data: ", data.latitude);
-      console.log("data: ", data.longitude);
+      // CREATE LOCATION AND FORM FOR DATA TO BE SENT TO SERVER
+      var data = {
+        locationData: locationData,
+        formData: formData
+      };
 
-      // run server request with lat/lon data
+      var json = JSON.stringify(data);
+
+      console.log("JSON to server", json);
+
+      // RUN SERVER POST WITH DATA
       $.ajax({
         method: 'POST',
         url: "/auth/signup",
-        data: data
+        data: {
+          json: json
+        }
       }).done(function(data){
-        console.log(data);
+        if (data.error) {
+          // TODO: use jQuery to manually display error message as flash message.
+          console.log("data.error", data.error);
+          window.location = "/auth/signup";
+        }
+        console.log("data after ajax: ", data);
+
+        $.ajax({
+          method: 'POST',
+          url: "/auth/login",
+          data: formData
+        }).done(function(data) {
+          window.location = '/profile';
+        });
       });
 
     });
