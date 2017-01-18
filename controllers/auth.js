@@ -82,7 +82,7 @@ router.post('/signup', function(req, res, next){
         req.flash('success', 'Account created and logged in');
         callback(null, user);
       } else{
-        req.flash('error', 'Email already exists!');
+        req.flash('error', 'Email already exists');
         // res.redirect('/auth/signup');
         callback('Email already exists', user);
       }

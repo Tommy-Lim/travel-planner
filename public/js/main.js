@@ -59,17 +59,17 @@ $(document).ready(function(){
         if (data.error) {
           // TODO: use jQuery to manually display error message as flash message.
           window.location = "/auth/signup";
+        } else{
+          // RUN LOGIN POST WITH FORM DATA
+          $.ajax({
+            method: 'POST',
+            url: "/auth/login",
+            data: formData,
+          }).done(function(data) {
+              window.location = '/profile';
+              $("#navbar-fixed").after("<div class='alert alert-success'>Account created and logged in</div>");
+          });
         }
-
-        // RUN LOGIN POST WITH FORM DATA
-        $.ajax({
-          method: 'POST',
-          url: "/auth/login",
-          data: formData,
-        }).done(function(data) {
-          console.log("data: ", data);
-          window.location = '/profile';
-        });
       });
 
     });
