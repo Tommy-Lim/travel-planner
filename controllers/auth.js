@@ -15,23 +15,44 @@ router.get('/signup', function(req, res){
 
 router.post('/signup', function(req, res, next){
 
-  var data = JSON.parse(req.body.json);
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  if(ip=="::1"){
+    ip = "8.8.8.8";
+  }
+  console.log("ip: ", ip);
+  res.locals.ip = ip;
 
-  var name = data.formData.name;
-  var email = data.formData.email;
-  var password = data.formData.password;
+  var name = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
 
-  var lat = data.locationData.latitude;
-  var lon = data.locationData.longitude;
-  var cityname = data.locationData.city+", "+data.locationData.region_name;
+  var lat;
+  var lon;
+  var cityname;
 
   var zip;
   var image;
   var historystart;
   var historyend;
 
-  // GET ZIP BASED ON LAT AND LON DATA
-  function getIp(callback){
+  // GET LAT/LON BASED ON IP
+  function getLatLon(callback){
+
+    request.get("https://freegeoip.net/json/"+ip, function(error, response, body){
+      console.log(body);
+      var locationData = JSON.parse(body);
+      lat = locationData.latitude;
+      lon = locationData.longitude;
+      cityname = locationData.city + ", " + locationData.region_name;
+      console.log(lat);
+      console.log(lon);
+      console.log(cityname);
+      callback(null, locationData);
+    });
+  }
+
+  // GET ZIP BASED ON LAT/LON
+  function getIp(locationData, callback){
     request.get('http://api.wunderground.com/api/'+process.env.WEATHER_APP_KEY+'/geolookup/q/'+lat+','+lon+'.json', function(error, response, body){
       var results = JSON.parse(body);
       zip = results.location.l.split(':')[1];
@@ -39,7 +60,7 @@ router.post('/signup', function(req, res, next){
     });
   }
 
-  function createUser(callback){
+  function createUser(zip, callback){
     if(!zip){
       zip = "98101.1.99999";
     }
@@ -75,29 +96,26 @@ router.post('/signup', function(req, res, next){
       }
     }).spread(function(user, created){
       if(created){
-        // passport.authenticate('local', {
-        //   successRedirect: '/profile',
-        //   successFlash: 'Account created and logged in'
-        // })(req, res, next);
-        req.flash('success', 'Account created and logged in');
+        passport.authenticate('local', {
+          successRedirect: '/profile',
+          successFlash: 'Account created and logged in'
+        })(req, res, next);
+        // req.flash('success', 'Account created and logged in');
         callback(null, user);
       } else{
         req.flash('error', 'Email already exists');
-        // res.redirect('/auth/signup');
+        res.redirect('/auth/signup');
         callback('Email already exists', user);
       }
     }).catch(function(error){
       req.flash('error', error.message);
-      // res.redirect('/auth/signup');
+      res.redirect('/auth/signup');
       callback("database error", error);
     });
   }
 
-  async.series([getIp, createUser], function(err, results){
-    res.send({
-      error: err,
-      results: results
-    });
+  async.waterfall([getLatLon, getIp, createUser], function(err, results){
+    console.log("finished watrerfall, created and logged in");
   });
 
 });
