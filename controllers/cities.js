@@ -108,8 +108,7 @@ router.post('/historical/:zip', function(req, res){
 
 });
 
-
-
+// SHOW CITY DETAILS
 router.get('/details/:zip', function(req, res){
   var zip = req.params.zip.split('=')[0];
   var name = req.params.zip.split('=')[1];

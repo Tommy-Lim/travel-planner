@@ -11,7 +11,6 @@ var cloudinary = require('cloudinary');
 var multer = require('multer');
 var upload = multer({dest: __dirname + '/uploads/'});
 
-
 // DIRECTS A USER TO THEIR PROFILE
 router.get('/', isLoggedIn, function(req, res){
   var zips;
@@ -20,7 +19,7 @@ router.get('/', isLoggedIn, function(req, res){
   var weather = {};
   var history = {};
 
-  //get all zips with the first being the home zip
+  // WATERFALL 1 - GET ALL ZIPS WITH THE FIRST BEING THE HOME ZIP
   function getZips(callback){
     zips = [];
     db.user.find({
@@ -30,9 +29,9 @@ router.get('/', isLoggedIn, function(req, res){
       include: [db.city]
     }).then(function(user){
       dbUser = user;
-      // add the home zip from user
+      // ADD THE HOME ZIP TO ZIPS
       zips.push(req.user.zip);
-      // add the destination zips from users_cities
+      // ADD DESTINATION ZIPS FROM USER.CITIES TO ZIPS
       user.cities.forEach(function(city){
         zips.push(city.zip);
       });
@@ -40,11 +39,12 @@ router.get('/', isLoggedIn, function(req, res){
     });
   }
 
+  // WATERFALL 2 - GET CITIES FROM ZIPS WITH THE FIRST BEING HOME
   function getCities(zips, callback){
     cities =[];
     zips.forEach(function(zip, index){
       if(index===0){
-        // add home city
+        // ADD HOME CITY
         cities.push(req.user.cityname);
       } else{
         db.city.find({
@@ -54,7 +54,7 @@ router.get('/', isLoggedIn, function(req, res){
         }).then(function(city){
           if(!city){
           } else{
-            //add destination city
+            // ADD DESTINATION CITY
             cities.push(city.cityname);
           }
         });
@@ -63,9 +63,9 @@ router.get('/', isLoggedIn, function(req, res){
     callback(null, zips);
   }
 
-  // get all weather data
+  // WATER FALL 3 - GET ALL WEATHER INCLUDING CONCAT
   function getAllWeather(zips, callback){
-
+    // CONCAT 1 - GET WEATHER FOR ONE ZIP
     var getWeather = function(zip, callback){
       var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/forecast10day/q/zmw:"+zip+".json";
       request.get(url, function(error, response, body){
@@ -75,15 +75,17 @@ router.get('/', isLoggedIn, function(req, res){
       });
     };
 
+    // CONCAT FOR GETTING WEATHER FOR ALL ZIPS USING GET WEATHER FOR ONE
     async.concat(zips, getWeather, function(err, results){
       callback(null, zips);
     });
 
   }
 
-  // get historical weather data
+  // WATERFALL 4 - GET HISTORICAL DATA FOR ALL USING CONCAT OF WEATHER FOR ONE
   function getAllHistorical(zips, callback){
 
+    // CONCAT 1 - USE GET HISTORICAL DATA TO GET DATA FOR ALL ZIPS
     var getHistorical = function(zip, callback){
       var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+dbUser.historystart+dbUser.historyend+"/q/zmw:"+zip+".json";
       request.get(url, function(error, response, body){
@@ -93,12 +95,14 @@ router.get('/', isLoggedIn, function(req, res){
       });
     };
 
+    // CONCAT FOR GETTING ALL HISTORICAL DATA USING GET HISTORICAL FOR ONE
     async.concat(zips, getHistorical, function(err, results){
       callback(null, results);
     });
 
   }
 
+  // WATERFALL FOR GETTING ALL ZIPS, CITIES, WEATHER, AND HISTORICAL WEATHER
   async.waterfall([getZips, getCities, getAllWeather, getAllHistorical], function(err, results){
     res.render('profile/index', {
       weather: weather,
@@ -111,7 +115,7 @@ router.get('/', isLoggedIn, function(req, res){
 
 });
 
-// UPDATES PROFILE PIC FILE
+// UPDATES PROFILE PICTURE LINK USING FILE UPLOAD
 router.post('/picture', upload.single('profilePic'), function(req, res){
   cloudinary.uploader.upload(req.file.path, function(result){
     db.user.find({
@@ -220,8 +224,5 @@ router.get('/:zmw', isLoggedIn, function(req, res){
     });
   });
 });
-
-
-
 
 module.exports = router;
