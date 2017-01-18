@@ -68,7 +68,7 @@ $(document).ready(function(){
           data: formData,
         }).done(function(data) {
           console.log("data: ", data);
-          // window.location = '/profile';
+          window.location = '/profile';
         });
       });
 
