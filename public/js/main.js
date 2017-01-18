@@ -27,10 +27,6 @@ $(document).ready(function(){
     e.preventDefault();
 
     // CREATE FORM DATA OBJECT
-    // var element = $(this);
-    // var formData = element.serialize();
-
-    // CREATE FORM DATA OBJECT
     var formData = {
       name: e.target.name.value,
       email: e.target.email.value,
@@ -51,9 +47,8 @@ $(document).ready(function(){
 
       var json = JSON.stringify(data);
 
-      console.log("JSON to server", json);
 
-      // RUN SERVER POST WITH DATA
+      // RUN SIGN UP POST WITH FORM AND LOCATION DATA
       $.ajax({
         method: 'POST',
         url: "/auth/signup",
@@ -63,17 +58,17 @@ $(document).ready(function(){
       }).done(function(data){
         if (data.error) {
           // TODO: use jQuery to manually display error message as flash message.
-          console.log("data.error", data.error);
           window.location = "/auth/signup";
         }
-        console.log("data after ajax: ", data);
 
+        // RUN LOGIN POST WITH FORM DATA
         $.ajax({
           method: 'POST',
           url: "/auth/login",
-          data: formData
+          data: formData,
         }).done(function(data) {
-          window.location = '/profile';
+          console.log("data: ", data);
+          // window.location = '/profile';
         });
       });
 

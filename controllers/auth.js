@@ -14,13 +14,8 @@ router.get('/signup', function(req, res){
 });
 
 router.post('/signup', function(req, res, next){
-  console.log('/signup reached');
-  console.log('body: ', req.body);
 
   var data = JSON.parse(req.body.json);
-
-  console.log("ZIP:", data.locationData.zip_code);
-  console.log("name:", data.formData.name);
 
   var name = data.formData.name;
   var email = data.formData.email;
@@ -40,13 +35,11 @@ router.post('/signup', function(req, res, next){
     request.get('http://api.wunderground.com/api/'+process.env.WEATHER_APP_KEY+'/geolookup/q/'+lat+','+lon+'.json', function(error, response, body){
       var results = JSON.parse(body);
       zip = results.location.l.split(':')[1];
-      console.log("getIp reached");
       callback(null, zip);
     });
   }
 
   function createUser(callback){
-    console.log("createUser reached");
     if(!zip){
       zip = "98101.1.99999";
     }
@@ -81,9 +74,7 @@ router.post('/signup', function(req, res, next){
         historyend: historyend
       }
     }).spread(function(user, created){
-      console.log("user found or created");
       if(created){
-        console.log("user created");
         // passport.authenticate('local', {
         //   successRedirect: '/profile',
         //   successFlash: 'Account created and logged in'
@@ -91,13 +82,11 @@ router.post('/signup', function(req, res, next){
         req.flash('success', 'Account created and logged in');
         callback(null, user);
       } else{
-        console.log("user not created");
-        req.flash('error', 'Email already exists');
+        req.flash('error', 'Email already exists!');
         // res.redirect('/auth/signup');
         callback('Email already exists', user);
       }
     }).catch(function(error){
-      console.log("dataabse error");
       req.flash('error', error.message);
       // res.redirect('/auth/signup');
       callback("database error", error);
@@ -105,7 +94,6 @@ router.post('/signup', function(req, res, next){
   }
 
   async.series([getIp, createUser], function(err, results){
-    console.log('finished');
     res.send({
       error: err,
       results: results
