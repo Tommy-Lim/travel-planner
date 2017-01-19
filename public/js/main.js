@@ -11,6 +11,12 @@ $(document).ready(function(){
   // ALLOW TOOLTIPS TO WORK - MATERIALIZE
   $('.tooltipped').tooltip({delay: 50});
 
+  // ALLOW FOR DATEPICKER - MATERIALIZE
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 0 // Creates a dropdown of 15 years to control year
+  });
+
   // BACK BUTTON FROM SEARCH FUNCTIONALITY
   $(".back-button").on('click', function(){
     window.history.back();
