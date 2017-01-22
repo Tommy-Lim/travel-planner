@@ -1,3 +1,5 @@
 node_modules
 notes.text
 .env
+dbTest.js
+deleteTest.js

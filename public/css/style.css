@@ -40,7 +40,7 @@
 .home-container{
   display: flex;
   flex-direction: column;
-  padding: 2vh;
+  padding: 3vh;
   font-size: 3vh;
 }
 
