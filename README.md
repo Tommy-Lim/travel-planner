@@ -24,17 +24,17 @@ Alas, Travel Easy to the rescue!
 
 ## Travel Easy in Action
 
-  ### Profile Home
-  ![Profile Home](./public/img/screenshots/profile.png)
+### Profile Home
+![Profile Home](./public/img/screenshots/profile.png)
 
-  ### Search Results
-  ![Search Results](./public/img/screenshots/search-results.png)
+### Search Results
+![Search Results](./public/img/screenshots/search-results.png)
 
-  ### Historical Weather
-  ![Historical Weather](./public/img/screenshots/historical-weather.png)
+### Historical Weather
+![Historical Weather](./public/img/screenshots/historical-weather.png)
 
-  ### Mobile Friendly
-  ![Mobile Home](./public/img/screenshots/mobile-home.png)
+### Mobile Friendly
+![Mobile Home](./public/img/screenshots/mobile-home.png)
 
 ## Technologies
 
