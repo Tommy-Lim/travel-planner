@@ -1,6 +1,6 @@
 # Travel Easy
 
-Check it out yourself - [Travel Easy](https://travel-planner-project-2.herokuapp.com/) on Heroku!
+Check it out for yourself - [Travel Easy](https://travel-planner-project-2.herokuapp.com/)!
 
 Travel Easy aims to simplify weather and flight comparisons for multiple cities. View forecasts and historical weather data, and log in or sign up to save a home city and as many destinations as desired.
 
@@ -22,6 +22,14 @@ Alas, Travel Easy to the rescue!
 
 * As a user, I want to compare flight cost information so I can factor in travel costs (flight feature in progress).
 
+## Key Technologies
+
+* html, css, javascript
+* node: express, bcrypt, passport, async, ejs layouts
+* postgres, sequelize
+* materialize, bootstrap
+* APIs: weather underground, freegeoip, cloudinary 
+
 ## Travel Easy in Action
 
 ### Profile Home [Screenshot]
@@ -35,8 +43,6 @@ Alas, Travel Easy to the rescue!
 
 ### Mobile Friendly [Screenshot]
 ![Mobile Home](./public/img/screenshots/mobile-home.png)
-
-## Technologies
 
 ## Challenges
 
