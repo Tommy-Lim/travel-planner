@@ -16,9 +16,9 @@ Alas, Travel Easy to the rescue!
 
 ## User stories
 
-* >As a user, I want to compare forecasts and historical weather for different cities so that I can plan where to vacation.
+* As a user, I want to compare forecasts and historical weather for different cities so that I can plan where to vacation.
 
-* >As a user, I want to have a log in and profile so I can save cities, travel dates, and add a profile picture.
+* As a user, I want to have a log in and profile so I can save cities, travel dates, and add a profile picture.
 
 * As a user, I want the site to be mobile friendly so that I can access all the features on my phone.
 
