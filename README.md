@@ -20,6 +20,8 @@ Alas, Travel Easy to the rescue!
 
 * As a user, I want to have a log in and profile so I can save cities, travel dates, and add a profile picture.
 
+* As a user, I want the site to be mobile friendly so that I can access all the features on my phone. 
+
 * As a user, I want to compare flight cost information so I can factor in travel costs (flight feature in progress).
 
 ## Key Technologies
