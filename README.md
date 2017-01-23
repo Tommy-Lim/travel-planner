@@ -16,14 +16,25 @@ Alas, Travel Easy to the rescue!
 
 ## User stories
 
-* As a user, I want to compare forecasts for different cities so that I can plan where I should go for the weekend.
-* As a user, I want to compare historical weather data for different cities so I can plan where to visit for my vacation.
+* As a user, I want to compare forecasts and historical weather for different cities so that I can plan where to vacation.
+
 * As a user, I want to have a log in and profile so I can save cities, travel dates, and add a profile picture.
+
 * As a user, I want to compare flight cost information so I can factor in travel costs (flight feature in progress).
 
 ## Travel Easy in Action
 
-  ![Profile Image](./public/img/screenshots/profile.png)
+  #### Profile Home
+  ![Profile Home](./public/img/screenshots/profile.png)
+
+  #### Search Results
+  ![Search Results](./public/img/screenshots/search-results.png)
+
+  #### Historical Weather
+  ![Historical Weather](./public/img/screenshots/historical-weather.png)
+
+  #### Mobile Friendly
+  ![Mobile Home](./public/img/screenshots/mobile-home.png)
 
 ## Technologies
 
