@@ -40,7 +40,7 @@ Alas, Travel Easy to the rescue!
 ### Automatically assigning default "home" location based on the user's IP.
 Initially, I had default values entered when a user would sign up, but desired the ability to automatically assign them a city.  
 
-To avoid relying on location permissions, I went to freegeoip.net to find lat/lon data using a user's IP. Once I had the API wired up, I realized each test user signing up was defaulting to KS... of course, because I was hosting the API call on server and using it's IP.  
+To avoid relying on location permissions, I went to freegeoip.net to find lat/lon data using a user's IP. Once I had the API wired up, I realized each test user signing up was defaulting to somewhere in Kansas... of course, because I was hosting the API call on the server and using it's IP.  
 
 So, I looked into implications of running on the client and found with API keys amongst other reasons, it wasn't the best solution.  Finally, I researched how to extract an IP from a request and was able to plug that into a server-side API call.  The call extracts lat/lon data then makes a subsequent call to the weather API to assign city and ZIP in desired format.
 
