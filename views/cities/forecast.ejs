@@ -10,14 +10,13 @@
     </div>
     <div class="card-action">
       <% if(!currentUser){ %>
-        <a href="/profile/home/<%- zip %>=<%- name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Log in to access"> <i class="fa fa-lock" aria-hidden="true"></i> Make Home</a>
         <a href="/profile/<%- zip %>=<%- name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Log in to access"> <i class="fa fa-lock" aria-hidden="true"></i> Add Destination</a>
+        <a href="/profile/home/<%- zip %>=<%- name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Log in to access"> <i class="fa fa-lock" aria-hidden="true"></i> Make Home</a>
       <% } else{ %>
-        <a href="/profile/home/<%- zip %>=<%- name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
         <a href="/profile/<%- zip %>=<%- name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
+        <a href="/profile/home/<%- zip %>=<%- name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
       <% }; %>
       <a href="/cities/details/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
-      <a href="/cities/forecast/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
       <a href="/cities/historical/<%- zip %>=<%- name %>" name="<%- name %>" class="blue-text"> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
     </div>
   </div>
