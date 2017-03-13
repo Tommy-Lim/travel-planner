@@ -43,6 +43,18 @@ router.post('/', function(req, res){
     }
   }
 
+  if(new Date(query.departureDate) > new Date(query.returnDate)){
+    body = {
+      error: {
+        message: "Return date must be after departure date."
+      }
+    }
+    res.render('flights/index', {
+      "query": query,
+      "response": body,
+    })
+  }
+
   request.post({
     url: url,
     headers: {

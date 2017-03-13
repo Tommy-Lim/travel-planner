@@ -5,9 +5,9 @@
 <div class="row">
   <h4>Search Flights</h4>
   <% if(response && response.error && response.error.message){ %>
-      <h5 class="red-text">
-        Sorry, API Error: <%- response.error.message %>
-      </h5>
+      <h6 class="red-text">
+        An error has occurred: <%- response.error.message %>
+      </h6>
   <% } %>
 </div>
 
