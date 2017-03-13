@@ -55,6 +55,7 @@ app.get('/', function(req, res){
 app.use('/profile', require('./controllers/profile'));
 app.use('/cities', require('./controllers/cities'));
 app.use('/auth', require('./controllers/auth'));
+app.use('/flights', require('./controllers/flights'));
 
 var server = app.listen(process.env.PORT || 3000);
 
