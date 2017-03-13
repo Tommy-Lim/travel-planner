@@ -33,4 +33,6 @@ $(document).ready(function(){
   // MAKE MATERIALIZE USE CHAR COUNT ON AIRPORT CODE
   $('#destination_airport, #origin_airport').characterCounter();
 
+  Materialize.updateTextFields();
+
 });

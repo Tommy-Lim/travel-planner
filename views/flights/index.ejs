@@ -28,17 +28,17 @@
       <div class="row">
         <div class="input-field col s6">
           <input value="<%- query.departureDate %>" name="departureDate" class="datepicker" type="date" required />
-          <label for="departureDate">Departure Date</label>
+          <label class="active" for="departureDate">Departure Date</label>
         </div>
         <div class="input-field col s6">
           <input value="<%- query.returnDate %>" name="returnDate" class="datepicker" type="date" required />
-          <label for="returnDate">Return Date</label>
+          <label class="active" for="returnDate">Return Date</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input value="<%- query.passengers %>" name="passengers" type="number" class="form-control" required />
-          <label for="passengers">Passengers</label>
+          <input value="<%- query.passengers %>" name="passengers" type="number" required />
+          <label class="active" for="passengers">Passengers</label>
         </div>
       </div>
       <input type="submit" class="btn btn-success blue" />
@@ -60,17 +60,17 @@
       <div class="row">
         <div class="input-field col s6">
           <input name="departureDate" class="datepicker" type="date" required />
-          <label for="departureDate">Departure Date</label>
+          <label class="active" for="departureDate">Departure Date</label>
         </div>
         <div class="input-field col s6">
           <input name="returnDate" class="datepicker" type="date" required />
-          <label for="returnDate">Return Date</label>
+          <label class="active" for="returnDate">Return Date</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input name="passengers" type="number" class="form-control" required />
-          <label for="passengers">Passengers</label>
+          <input name="passengers" type="number" required />
+          <label class="active" for="passengers">Passengers</label>
         </div>
       </div>
       <input type="submit" class="btn btn-success blue" />
