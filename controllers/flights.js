@@ -8,18 +8,54 @@ var router = express.Router();
 
 // SHOW FLIGHTS SEARCH FORM
 router.get('/', function(req, res){
-  var data = {"test": "<p>Hello</p>"}
   res.render('flights/index', {
-    data: data
   });
 });
 
 router.post('/', function(req, res){
-  var data = req.body;
-  console.log('DATA', data);
-  res.render('flights/index', {
-    "flights": data
+  var query = req.body;
+
+  // BUILD THE FLIGHT REQUEST OBJECT
+  var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search';
+  var requestObj = {
+    "key": process.env.GOOGLE_FLIGHTS_KEY,
+    "request": {
+      "passengers": {
+        "adultCount": query.passengers,
+      },
+      "slice": [
+        {
+          "origin": query.origin,
+          "destination": query.destination,
+          "date": query.departureDate,
+        },
+        {
+          "origin": query.destination,
+          "destination": query.origin,
+          "date": query.returnDate,
+        }
+      ],
+      "saleCountry": "US",
+      "ticketingCountry": "US",
+      "solutions": 20
+    }
+  }
+
+  request({
+    method: 'POST',
+    url: url,
+    request: requestObj.request,
+  }, function(err, response, body){
+    console.log("ERR", err)
+    // console.log("RES", response)
+    console.log("BODY", body)
+    res.render('flights/index', {
+      "query": requestObj.request,
+      "response": response
+    })
   })
+
+
 })
 
 
