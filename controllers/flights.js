@@ -6,13 +6,21 @@ var request = require('request');
 var db = require('../models');
 var router = express.Router();
 
-// SHOW FLIGHTS SEERCH FORM
+// SHOW FLIGHTS SEARCH FORM
 router.get('/', function(req, res){
-  data = {"test": "<p>Hello</p>"}
+  var data = {"test": "<p>Hello</p>"}
   res.render('flights/index', {
     data: data
   });
 });
+
+router.post('/', function(req, res){
+  var data = req.body;
+  console.log('DATA', data);
+  res.render('flights/index', {
+    "flights": data
+  })
+})
 
 
 // CHANGE HISTORICAL START AND END DATES

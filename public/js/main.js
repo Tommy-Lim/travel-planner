@@ -14,7 +14,9 @@ $(document).ready(function(){
   // ALLOW FOR DATEPICKER - MATERIALIZE
   $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
-    selectYears: 0 // Creates a dropdown of 15 years to control year
+    selectYears: 0, // Creates a dropdown of 15 years to control year
+    format: 'yyyy-mm-dd',
+    min: new Date(),
   });
 
   // BACK BUTTON FROM SEARCH FUNCTIONALITY
@@ -27,5 +29,8 @@ $(document).ready(function(){
     e.preventDefault();
     $("#search-label").focus();
   });
+
+  // MAKE MATERIALIZE USE CHAR COUNT ON AIRPORT CODE
+  $('#destination_airport, #origin_airport').characterCounter();
 
 });
