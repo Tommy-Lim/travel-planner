@@ -1,46 +1,77 @@
 <div class="row">
   <h4>Search Flights</h4>
-
   <% var query, response %>
   <% if(response){ %>
-    <%- JSON.stringify(response) %>
-  <% }else{ %>
-
+    <%- JSON.stringify(query) %>
   <% } %>
 </div>
 
-<div class="row">
+<% if(query){ %>
+  <div class="row">
+    <form class="col s12" method="POST" action="/flights" id="flights-form">
+      <div class="row">
+        <div class="input-field col s6">
+          <input value="<%- query.origin %>" name="origin" class="validate" id="origin_airport" type="text" data-length="3" placeholder='Try "SEA"' required />
+          <label for="origin">Origin Airport</label>
+        </div>
+        <div class="input-field col s6">
+          <input value="<%- query.destination %>" name="destination" class="validate" id="destination_airport" type="text" data-length="3" placeholder='Try "SFO"' required />
+          <label for="destination">Destination Airport</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input value="<%- query.departureDate %>" name="departureDate" class="datepicker" type="date" required />
+          <label for="departureDate">Departure Date</label>
+        </div>
+        <div class="input-field col s6">
+          <input value="<%- query.returnDate %>" name="returnDate" class="datepicker" type="date" required />
+          <label for="returnDate">Return Date</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input value="<%- query.passengers %>" name="passengers" type="number" class="form-control" required />
+          <label for="passengers">Passengers</label>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-success blue" />
+    </form>
+  </div>
+<% }else{ %>
+  <div class="row">
+    <form class="col s12" method="POST" action="/flights" id="flights-form">
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="origin" class="validate" id="origin_airport" type="text" data-length="3" placeholder='Try "SEA"' required />
+          <label for="origin">Origin Airport</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="destination" class="validate" id="destination_airport" type="text" data-length="3" placeholder='Try "SFO"' required />
+          <label for="destination">Destination Airport</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="departureDate" class="datepicker" type="date" required />
+          <label for="departureDate">Departure Date</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="returnDate" class="datepicker" type="date" required />
+          <label for="returnDate">Return Date</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="passengers" type="number" class="form-control" required />
+          <label for="passengers">Passengers</label>
+        </div>
+      </div>
+      <input type="submit" class="btn btn-success blue" />
+    </form>
+  </div>
+<% } %>
 
-  <form class="col s12" method="POST" action="/flights" id="flights-form">
-    <div class="row">
-      <div class="input-field col s6">
-        <input value="SEA" name="origin" class="validate" id="origin_airport" type="text" data-length="3" placeholder='Try "SEA"' required />
-        <label for="origin">Origin Airport</label>
-      </div>
-      <div class="input-field col s6">
-        <input value="PDX" name="destination" class="validate" id="destination_airport" type="text" data-length="3" placeholder='Try "SFO"' required />
-        <label for="destination">Destination Airport</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <input value="2017-05-06" name="departureDate" class="datepicker" type="date" required />
-        <label for="departureDate">Departure Date</label>
-      </div>
-      <div class="input-field col s6">
-        <input value="2017-05-09" name="returnDate" class="datepicker" type="date" required />
-        <label for="returnDate">Return Date</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s6">
-        <input value="1" name="passengers" type="number" class="form-control" required />
-        <label for="passengers">Passengers</label>
-      </div>
-    </div>
+if(response){
 
-    <input type="submit" class="btn btn-success blue" />
-
-  </form>
-
-</div>
+}

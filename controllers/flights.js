@@ -3,6 +3,8 @@ require('dotenv').config();
 
 var express = require('express');
 var request = require('request');
+var QPX = require('qpx-express');
+var qpx = new QPX(process.env.GOOGLE_FLIGHTS_KEY);
 var db = require('../models');
 var router = express.Router();
 
@@ -16,7 +18,6 @@ router.post('/', function(req, res){
   var query = req.body;
 
   // BUILD THE FLIGHT REQUEST OBJECT
-  var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + process.env.GOOGLE_FLIGHTS_KEY;
   var requestObj = {
     "request": {
       "passengers": {
@@ -40,22 +41,33 @@ router.post('/', function(req, res){
     }
   }
 
-  request({
-    method: 'POST',
-    url: url,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    request: requestObj.request,
-  }, function(err, response, body){
-    console.log("ERR", err)
-    // console.log("RES", response)
-    console.log("BODY", body)
+  qpx.getInfo(requestObj, function(error, data){
+    console.log("ERROR", error);
+    console.log("DATA", data);
+    res.locals.flights = data;
     res.render('flights/index', {
-      "query": requestObj.request,
-      "response": response
+      "query": query,
+      "response": data
     })
   })
+
+  // var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + process.env.GOOGLE_FLIGHTS_KEY;
+  // request({
+  //   method: 'POST',
+  //   url: url,
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   request: requestObj.request,
+  // }, function(err, response, body){
+  //   console.log("ERR", err)
+  //   // console.log("RES", response)
+  //   console.log("BODY", body)
+  //   res.render('flights/index', {
+  //     "query": requestObj.request,
+  //     "response": response
+  //   })
+  // })
 
 
 })

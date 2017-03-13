@@ -3,3 +3,4 @@ notes.text
 .env
 dbTest.js
 deleteTest.js
+seeders
