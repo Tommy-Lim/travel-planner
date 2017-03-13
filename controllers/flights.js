@@ -16,59 +16,49 @@ router.get('/', function(req, res){
 
 router.post('/', function(req, res){
   var query = req.body;
+  console.log(req.body);
 
   // BUILD THE FLIGHT REQUEST OBJECT
+  var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + process.env.GOOGLE_FLIGHTS_KEY;
   var requestObj = {
-    "request": {
-      "passengers": {
-        "adultCount": query.passengers,
+    request: {
+      passengers: {
+        adultCount: query.passengers,
       },
-      "slice": [
+      slice: [
         {
-          "origin": query.origin,
-          "destination": query.destination,
-          "date": query.departureDate,
+          origin: query.origin,
+          destination: query.destination,
+          date: query.departureDate,
         },
         {
-          "origin": query.destination,
-          "destination": query.origin,
-          "date": query.returnDate,
+          origin: query.destination,
+          destination: query.origin,
+          date: query.returnDate,
         }
       ],
-      "saleCountry": "US",
-      "ticketingCountry": "US",
-      "solutions": 20
+      saleCountry: "US",
+      ticketingCountry: "US",
+      solutions: 20
     }
   }
 
-  qpx.getInfo(requestObj, function(error, data){
-    console.log("ERROR", error);
-    console.log("DATA", data);
-    res.locals.flights = data;
+  request.post({
+    url: url,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(requestObj),
+  }, function(err, response, body){
+    console.log("ERR", err);
+    console.log("RESPONSE", response);
+    body = JSON.parse(body);
+    console.log("BODY", body)
     res.render('flights/index', {
       "query": query,
-      "response": data
+      "response": body,
     })
   })
-
-  // var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + process.env.GOOGLE_FLIGHTS_KEY;
-  // request({
-  //   method: 'POST',
-  //   url: url,
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   request: requestObj.request,
-  // }, function(err, response, body){
-  //   console.log("ERR", err)
-  //   // console.log("RES", response)
-  //   console.log("BODY", body)
-  //   res.render('flights/index', {
-  //     "query": requestObj.request,
-  //     "response": response
-  //   })
-  // })
-
 
 })
 

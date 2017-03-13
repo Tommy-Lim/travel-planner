@@ -1,10 +1,16 @@
+<% var query; %>
+<% var response; %>
+
+
 <div class="row">
   <h4>Search Flights</h4>
-  <% var query, response %>
-  <% if(response){ %>
-    <%- JSON.stringify(query) %>
+  <% if(response && response.error && response.error.message){ %>
+      <h5 class="red-text">
+        Sorry, API Error: <%- response.error.message %>
+      </h5>
   <% } %>
 </div>
+
 
 <% if(query){ %>
   <div class="row">
@@ -72,6 +78,44 @@
   </div>
 <% } %>
 
-if(response){
-
-}
+<% if(response && response.trips){ %>
+  <% response.trips.tripOption.forEach(function(trip){ %>
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title">
+          USD <%- trip.saleTotal.split("USD")[1] %>
+        </div>
+        <ul class="collection">
+          <% trip.slice.forEach(function(slice){ %>
+            <li>
+              <ul class="collection">
+                <% slice.segment.forEach(function(segment){ %>
+                  <li>
+                    <ul class="collection">
+                      <% segment.leg.forEach(function(leg){ %>
+                        <li>
+                          <p>
+                            <%- segment.flight.carrier %><%- segment.flight.number %> | <%- leg.origin %> to <%- leg.destination %>
+                          </p>
+                          <p>
+                            <%- leg.departureTime %> to <%- leg.arrivalTime %>
+                          </p>
+                          <p>
+                            <%- leg.duration %> mins | <%- leg.mileage %> miles
+                          </p>
+                          <p>
+                            <%- leg.operatingDisclosure %>
+                          </p>
+                        </li>
+                      <% }) %>
+                    </ul>
+                  </li>
+                <% }) %>
+              </ul>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  <% }) %>
+<% } %>
