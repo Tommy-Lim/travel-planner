@@ -16,9 +16,8 @@ router.post('/', function(req, res){
   var query = req.body;
 
   // BUILD THE FLIGHT REQUEST OBJECT
-  var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search';
+  var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + process.env.GOOGLE_FLIGHTS_KEY;
   var requestObj = {
-    "key": process.env.GOOGLE_FLIGHTS_KEY,
     "request": {
       "passengers": {
         "adultCount": query.passengers,
@@ -44,6 +43,9 @@ router.post('/', function(req, res){
   request({
     method: 'POST',
     url: url,
+    headers: {
+      "Content-Type": "application/json",
+    },
     request: requestObj.request,
   }, function(err, response, body){
     console.log("ERR", err)
