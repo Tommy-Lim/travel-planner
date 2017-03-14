@@ -146,9 +146,19 @@ footer.page-footer{
   color: #2196F3
 }
 
+.flights-errors{
+  padding-left: 10.5px;
+}
+
 #modalDatesHistorical, #modalDatesProfile{
   transform: none !important;
   border-radius: 0px;
+}
+
+@media(min-width: 992px){
+  nav .brand-logo{
+    padding-left: 15px;
+  }
 }
 
 @media only screen and (min-width: 601px){
@@ -156,7 +166,6 @@ footer.page-footer{
     height: 128px;
   }
 }
-
 
 @media only screen and (max-width: 601px){
   #navbar-fixed {
