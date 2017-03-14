@@ -155,9 +155,17 @@ footer.page-footer{
   margin-bottom: 0;
 }
 
-#modalDatesHistorical, #modalDatesProfile{
+#modalDatesHistorical, #modalDatesProfile, #modalSettings{
   transform: none !important;
   border-radius: 0px;
+}
+
+#modalSettings .input-field.col label{
+  left: 0;
+}
+
+.modal{
+  max-height: 80%;
 }
 
 @media(min-width: 992px){

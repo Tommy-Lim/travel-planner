@@ -5,7 +5,7 @@
     </div>
     <div class="profile-container">
       <div class="card-panel hoverable" id="profile-card">
-        <a href="#modalImageUpload"><img src="<%- currentUser.image %>" class="profile-pic"><i id="editPic" class="fa fa-pencil blue-text" aria-hidden="true"></i></a>
+        <a href="#modalImageUpload"><img src="<%- currentUser.image %>" class="profile-pic"></a>
       </div>
       <span>
         <p><strong>Home</strong></p>
@@ -143,11 +143,11 @@
     <form method="POST" action="/profile/history %>">
      <div class="row">
        <div class="input-field col s12">
-         <input name="historystart" class="datepickerProfile" type="date" required />
+         <input value="<%- user.historystart %>" name="historystart" class="datepickerProfile" type="text" required />
          <label class="active" for="historystart">Period Start</label>
        </div>
        <div class="input-field col s12">
-         <input name="historyend" class="datepickerProfile" type="date" required />
+         <input value="<%- user.historyend %>" name="historyend" class="datepickerProfile" type="text" required />
          <label class="active" for="historyend">Period End</label>
        </div>
      </div>

@@ -80,7 +80,9 @@ router.get('/historical/:zip', function(req, res){
     res.render('cities/historical', {
       weather: weather,
       name: name,
-      zip: zip
+      zip: zip,
+      start: startDate,
+      end: endDate
     });
   });
 

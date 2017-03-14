@@ -217,11 +217,11 @@
    <form method="POST" action="/cities/historical/<%= zip %>=<%= name %>">
     <div class="row">
       <div class="input-field col s12">
-        <input name="historystart" class="datepickerHistorical" type="date" required />
+        <input value="<%- start %>" name="historystart" class="datepickerHistorical" type="text" required />
         <label class="active" for="historystart">Period Start</label>
       </div>
       <div class="input-field col s12">
-        <input name="historyend" class="datepickerHistorical" type="date" required />
+        <input value="<%- end %>" name="historyend" class="datepickerHistorical" type="text" required />
         <label class="active" for="historyend">Period End</label>
       </div>
     </div>
