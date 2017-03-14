@@ -16,7 +16,7 @@ router.get('/', function(req, res){
 
 router.post('/', function(req, res){
   var query = req.body;
-  console.log(req.body);
+  // console.log(req.body);
 
   // BUILD THE FLIGHT REQUEST OBJECT
   var url = 'https://www.googleapis.com/qpxExpress/v1/trips/search?key=' + process.env.GOOGLE_FLIGHTS_KEY;
@@ -4201,9 +4201,9 @@ router.post('/', function(req, res){
   }, function(err, response, body){
     body = JSON.parse(body);
 
-    console.log("RESPONSE", response);
-    console.log("BODY", body)
-    console.log("ERR", err);
+    // console.log("RESPONSE", response);
+    // console.log("BODY", body)
+    // console.log("ERR", err);
 
     if(body.trips && !body.trips.tripOption){
       body = {

@@ -20,7 +20,7 @@ passport.use(new LocalStrategy({
   db.user.find({
     where: {email: email}
   }).then(function(user){
-    console.log('user info: ', user);
+    // console.log('user info: ', user);
     if(!user || !user.validPassword(password)){
       cb(null, false);
     } else{

@@ -117,7 +117,7 @@ router.post('/signup', function(req, res, next){
 
   // WATERFALL FOR OBTAINING LOCATION AND ZIP, THEN CREATING USER
   async.waterfall([getLatLon, getZip, createUser], function(err, results){
-    console.log("finished watrerfall, created and logged in");
+    // console.log("finished watrerfall, created and logged in");
   });
 
 });

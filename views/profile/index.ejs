@@ -87,7 +87,7 @@
     <div class="card-title">
       Historical Weather
     </div>
-    <p><%= history[zips[0]].trip.period_of_record.date_start.date.monthname %> <%= history[zips[0]].trip.period_of_record.date_start.date.day %> - <%= history[zips[0]].trip.period_of_record.date_end.date.monthname %> <%= history[zips[0]].trip.period_of_record.date_end.date.day %><a href="#modalDatesProfile"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p><%= history[zips[0]].trip.title.split(" for ")[1] %> <a href="#modalDatesProfile"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
     <p class="grey-text">5-yr period average, 30-day max range</p>
     <br />
     <div class="weather-matrix">

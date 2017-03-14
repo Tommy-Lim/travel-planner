@@ -72,6 +72,7 @@ router.get('/historical/:zip', function(req, res){
     endDate = "0801";
   }
 
+
   var url = "http://api.wunderground.com/api/"+process.env.WEATHER_APP_KEY+"/planner_"+startDate+endDate+"/q/zmw:"+zip+".json";
 
   request.get(url, function(error, response, body){

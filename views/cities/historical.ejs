@@ -28,7 +28,10 @@
     <div class="card-title">
       Historical Temp, Precip, and Dewpoint
     </div>
-    <p><%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %> - <%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p>
+      <%= weather.trip.title.split(" for ")[1] %>
+      <a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+    </p>
     <p class="grey-text">5-yr period average, 30-day max range</p>
     <br />
     <table class="striped bordered centered">
@@ -93,7 +96,10 @@
     <div class="card-title">
       Historical % Chance of:
     </div>
-    <p><%= weather.trip.period_of_record.date_start.date.monthname %> <%= weather.trip.period_of_record.date_start.date.day %> - <%= weather.trip.period_of_record.date_end.date.monthname %> <%= weather.trip.period_of_record.date_end.date.day %><a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+    <p>
+      <%= weather.trip.title.split(" for ")[1] %>
+      <a href="#modalDatesHistorical"> <i class="fa fa-pencil" aria-hidden="true"></i></a>
+    </p>
     <p class="grey-text">5-yr period average, 30-day max range</p>
     <table class="striped bordered centered">
       <thead>
