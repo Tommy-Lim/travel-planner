@@ -34,6 +34,7 @@
           <th>Day</th>
           <th>Cond.</th>
           <th>Low</th>
+          <th>Avg</th>
           <th>High</th>
         </thead>
         <% weather.forecast.simpleforecast.forecastday.forEach(function(item){ %>
@@ -41,6 +42,7 @@
             <td><%= item.date.weekday.slice(0,3) %></td>
             <td><img class="weather-icon" src="<%- item.icon_url %>" /></td>
             <td><%= item.low.fahrenheit %>&#8457</td>
+            <td><%= ((parseInt(item.low.fahrenheit) + parseInt(item.high.fahrenheit))/2).toFixed(0) %>&#8457</td>
             <td><%= item.high.fahrenheit %>&#8457</td>
           </tr>
         <% }); %>

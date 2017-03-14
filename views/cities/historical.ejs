@@ -49,9 +49,9 @@
         </tr>
         <tr>
           <th>Temp Avg</th>
-          <td><%- (weather.trip.temp_high.min.F + weather.trip.temp_low.min.F)/2 %>&#8457</td>
-          <td><%- (weather.trip.temp_high.avg.F + weather.trip.temp_low.avg.F)/2 %>&#8457</td>
-          <td><%- (weather.trip.temp_high.max.F + weather.trip.temp_low.max.F)/2 %>&#8457</td>
+          <td><%- ((parseInt(weather.trip.temp_high.min.F) + parseInt(weather.trip.temp_low.min.F))/2).toFixed(0) %>&#8457</td>
+          <td><%- ((parseInt(weather.trip.temp_high.avg.F) + parseInt(weather.trip.temp_low.avg.F))/2).toFixed(0) %>&#8457</td>
+          <td><%- ((parseInt(weather.trip.temp_high.max.F) + parseInt(weather.trip.temp_low.max.F))/2).toFixed(0) %>&#8457</td>
         </tr>
         <tr>
           <th>Temp Low</th>
@@ -60,7 +60,7 @@
           <td><%- weather.trip.temp_low.max.F %>&#8457</td>
         </tr>
         <tr>
-          <th>Precip</th>
+          <th>Precip Avg</th>
           <td><%- weather.trip.precip.min.in %>in.</td>
           <td><%- weather.trip.precip.avg.in %>in.</td>
           <td><%- weather.trip.precip.max.in %>in.</td>
@@ -70,6 +70,12 @@
           <td><%- weather.trip.dewpoint_high.min.F %>&#8457</td>
           <td><%- weather.trip.dewpoint_high.avg.F %>&#8457</td>
           <td><%- weather.trip.dewpoint_high.max.F %>&#8457</td>
+        </tr>
+        <tr>
+          <th>Dewpoint Avg</th>
+          <td><%- ((parseInt(weather.trip.dewpoint_high.min.F) + parseInt(weather.trip.dewpoint_low.min.F))/2).toFixed(0) %>&#8457</td>
+          <td><%- ((parseInt(weather.trip.dewpoint_high.avg.F) + parseInt(weather.trip.dewpoint_low.avg.F))/2).toFixed(0) %>&#8457</td>
+          <td><%- ((parseInt(weather.trip.dewpoint_high.max.F) + parseInt(weather.trip.dewpoint_low.max.F))/2).toFixed(0) %>&#8457</td>
         </tr>
         <tr>
           <th>Dewpoint Low</th>

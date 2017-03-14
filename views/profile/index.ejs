@@ -95,11 +95,12 @@
         <thead>
           <th></th>
           <th>Cloud cover</th>
-          <th>Low Temp<br />Avg.</th>
-          <th>High Temp<br />Avg.</th>
-          <th>Precip.<br />Avg.</th>
-          <th>Low Dewpoint<br />Avg.</th>
-          <th>High dewpoint<br />Avg.</th>
+          <th>Low Temp<br />Avg</th>
+          <th>Avg Temp<br />Avg</th>
+          <th>High Temp<br />Avg</th>
+          <th>Precip.<br />Avg</th>
+          <th>Low Dewpoint<br />Avg</th>
+          <th>High Dewpoint<br />Avg</th>
         </thead>
         <tbody>
           <% zips.forEach(function(zip, index){ %>
@@ -113,6 +114,7 @@
               </td>
               <td><%= history[zip].trip.cloud_cover.cond %></td>
               <td><%= history[zip].trip.temp_low.avg.F %>&#8457</td>
+              <td><%= ((parseInt(history[zip].trip.temp_low.avg.F) + parseInt(history[zip].trip.temp_high.avg.F))/2).toFixed(0) %>&#8457</td>
               <td><%= history[zip].trip.temp_high.avg.F %>&#8457</td>
               <td><%= history[zip].trip.precip.avg.in %>in.</td>
               <td><%= history[zip].trip.dewpoint_low.avg.F %>&#8457</td>
@@ -121,6 +123,7 @@
           <% }); %>
           <tr>
             <td><a href="#" class="orange-text profile-search-icons">Find Destination<br /><i class="fa fa-plus orange-text" aria-hidden="true"></i></a></td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
