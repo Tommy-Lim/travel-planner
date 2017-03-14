@@ -18,6 +18,16 @@ $(document).ready(function(){
     format: 'yyyy-mm-dd',
     min: new Date(),
   });
+  $('.datepickerHistorical').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: false, // Creates a dropdown of 15 years to control year
+    format: 'mmdd',
+  });
+  $('.datepickerProfile').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: false, // Creates a dropdown of 15 years to control year
+    format: 'mmdd',
+  });
 
   // BACK BUTTON FROM SEARCH FUNCTIONALITY
   $(".back-button").on('click', function(){

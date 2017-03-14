@@ -85,7 +85,7 @@ router.post('/historical/:zip', function(req, res){
 
   var startDate = req.body.historystart;
   var endDate = req.body.historyend;
-
+  
   req.session.startDate = startDate;
   req.session.endDate = endDate;
 

@@ -4199,10 +4199,20 @@ router.post('/', function(req, res){
     },
     body: JSON.stringify(requestObj),
   }, function(err, response, body){
-    console.log("ERR", err);
-    console.log("RESPONSE", response);
     body = JSON.parse(body);
+
+    console.log("RESPONSE", response);
     console.log("BODY", body)
+    console.log("ERR", err);
+
+    if(body.trips && !body.trips.tripOption){
+      body = {
+        error: {
+          message: "No results found.  Try modifying search."
+        }
+      }
+    }
+
     res.render('flights/index', {
       "query": query,
       "response": body,

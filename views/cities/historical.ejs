@@ -48,6 +48,12 @@
           <td><%- weather.trip.temp_high.max.F %>&#8457</td>
         </tr>
         <tr>
+          <th>Temp Avg</th>
+          <td><%- (weather.trip.temp_high.min.F + weather.trip.temp_low.min.F)/2 %>&#8457</td>
+          <td><%- (weather.trip.temp_high.avg.F + weather.trip.temp_low.avg.F)/2 %>&#8457</td>
+          <td><%- (weather.trip.temp_high.max.F + weather.trip.temp_low.max.F)/2 %>&#8457</td>
+        </tr>
+        <tr>
           <th>Temp Low</th>
           <td><%- weather.trip.temp_low.min.F %>&#8457</td>
           <td><%- weather.trip.temp_low.avg.F %>&#8457</td>
@@ -197,15 +203,15 @@
 <div id="modalDatesHistorical" class="modal">
  <div class="modal-content">
    <form method="POST" action="/cities/historical/<%= zip %>=<%= name %>">
-    <div class="form-group">
-      <label for="historystart">Travel/Historical Start (MMDD)</label>
-      <input name="historystart" class="form-control" placeholder="0928 = September 28" required/>
-       <input type="date" class="datepicker">
-    </div>
-    <div class="form-group">
-      <label for="historyend">Travel/Historical End (MMDD)</label>
-      <input name="historyend" class="form-control" placeholder="1014 = October 14" required/>
-      <input type="date" class="datepicker">
+    <div class="row">
+      <div class="input-field col s12">
+        <input name="historystart" class="datepickerHistorical" type="date" required />
+        <label class="active" for="historystart">Period Start</label>
+      </div>
+      <div class="input-field col s12">
+        <input name="historyend" class="datepickerHistorical" type="date" required />
+        <label class="active" for="historyend">Period End</label>
+      </div>
     </div>
     <input type="submit" class="btn blue" />
    </form>

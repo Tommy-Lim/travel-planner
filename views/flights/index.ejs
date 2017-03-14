@@ -3,10 +3,9 @@
 
 
 <div class="row">
-  <h4>Search Flights</h4>
   <% if(response && response.error && response.error.message){ %>
       <h6 class="red-text">
-        An error has occurred: <%- response.error.message %>
+        <%- response.error.message %>
       </h6>
   <% } %>
 </div>
@@ -78,7 +77,7 @@
   </div>
 <% } %>
 
-<% if(response && response.trips){ %>
+<% if(response && response.trips && response.trips.tripOption){ %>
   <% response.trips.tripOption.forEach(function(trip){ %>
     <div class="card grey lighten-4">
       <div class="card-content">
@@ -97,9 +96,6 @@
                           <p>
                             <span class="blue-text"><%- leg.origin %> to <%- leg.destination %></span> &middot;
                             <%- Math.floor(leg.duration/60) %>hr <%- leg.duration-60*Math.floor(leg.duration/60) %>min &middot; <%- leg.mileage %>miles
-                          </p>
-                          <p>
-
                           </p>
                           <p class="grey-text small-text">
                             <%- segment.flight.carrier %><%- segment.flight.number %>
