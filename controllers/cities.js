@@ -6,8 +6,15 @@ var request = require('request');
 var db = require('../models');
 var router = express.Router();
 
-// SHOW CITIES FROM SEARCH RESULTS
+// SHOW FORM PAGE
 router.get('/', function(req, res){
+  res.render('cities/index', {
+
+  })
+})
+
+// SHOW CITIES FROM SEARCH RESULTS
+router.get('/results', function(req, res){
 
   var query = req.query.search;
   var citiesUrl = "http://autocomplete.wunderground.com/aq?query="+query;
@@ -85,7 +92,7 @@ router.post('/historical/:zip', function(req, res){
 
   var startDate = req.body.historystart;
   var endDate = req.body.historyend;
-  
+
   req.session.startDate = startDate;
   req.session.endDate = endDate;
 

@@ -122,6 +122,30 @@ footer.page-footer{
   font-size: 12px;
 }
 
+#search-page .input-field .prefix{
+  top: 10px;
+  left: 5px;
+  font-size: 3rem;
+}
+
+#search-page .input-field .prefix ~ input{
+  margin-left: 0px;
+}
+
+#search-page .input-field input{
+  margin-bottom: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.input-field .prefix.active{
+  color: #2196F3;
+}
+
+.input-field input:focus + #search-label i{
+  color: #2196F3
+}
+
 #modalDatesHistorical, #modalDatesProfile{
   transform: none !important;
   border-radius: 0px;

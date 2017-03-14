@@ -1,5 +1,5 @@
-<h4>Search results for "<%= query %>":</h4>
 <% if(cities.length>=1){ %>
+  <h5>Search results for "<%= query %>":</h5>
   <% cities.forEach(function(city){ %>
     <div class="card grey lighten-4">
       <div class="card-content">
@@ -8,6 +8,9 @@
           <%- city.name %>
         </div>
         <div class="card-action">
+          <a href="/cities/forecast/<%- city.zmw %>=<%- city.name %>" name="<%- city.name %>" class="blue-text"> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
+          <a href="/cities/historical/<%- city.zmw %>=<%- city.name %>" name="<%- city.name %>" class="blue-text"> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
+          <a href="/cities/details/<%- city.zmw %>=<%- city.name %>" name="<%- city.name %>" class="blue-text"> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
           <% if(!currentUser){ %>
             <a href="/profile/<%- city.zmw %>=<%- city.name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Log in to access"> <i class="fa fa-lock" aria-hidden="true"></i> Add Destination</a>
             <a href="/profile/home/<%- city.zmw %>=<%- city.name %>" class="tooltipped grey-text" data-position="bottom" data-delay="20" data-tooltip="Log in to access"> <i class="fa fa-lock" aria-hidden="true"></i> Make Home</a>
@@ -15,9 +18,6 @@
             <a href="/profile/<%- city.zmw %>=<%- city.name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Add Destination</a>
             <a href="/profile/home/<%- city.zmw %>=<%- city.name %>"> <i class="fa fa-plus" aria-hidden="true"></i> Make Home</a>
           <% }; %>
-          <a href="/cities/details/<%- city.zmw %>=<%- city.name %>" name="<%- city.name %>" class="blue-text"> <i class="fa fa-info" aria-hidden="true"></i> Details</a>
-          <a href="/cities/forecast/<%- city.zmw %>=<%- city.name %>" name="<%- city.name %>" class="blue-text"> <i class="fa fa-sun-o" aria-hidden="true"></i> Forecast</a>
-          <a href="/cities/historical/<%- city.zmw %>=<%- city.name %>" name="<%- city.name %>" class="blue-text"> <i class="fa fa-history" aria-hidden="true"></i> Historical</a>
         </div>
 
       </div>
@@ -25,5 +25,5 @@
 
   <% }); %>
 <% } else { %>
-  <h3>No search results found.</h3>
+  <h5>Dang! No results found for "<%= query %>". Try something like "Seattle".</h5>
 <% }; %>
