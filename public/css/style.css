@@ -160,15 +160,3 @@ footer.page-footer{
     padding-left: 15px;
   }
 }
-
-@media only screen and (min-width: 601px){
-  #navbar-fixed {
-    height: 128px;
-  }
-}
-
-@media only screen and (max-width: 601px){
-  #navbar-fixed {
-    height: 112px;
-  }
-}
