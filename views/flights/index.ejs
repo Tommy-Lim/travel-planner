@@ -85,26 +85,26 @@
         <div class="card-title">
           USD <%- trip.saleTotal.split("USD")[1] %>
         </div>
-        <ul class="collection">
+        <ul class="collection no-border">
           <% trip.slice.forEach(function(slice){ %>
             <li>
-              <ul class="collection">
+              <ul class="collection no-border">
                 <% slice.segment.forEach(function(segment){ %>
                   <li>
-                    <ul class="collection">
+                    <ul class="collection no-border">
                       <% segment.leg.forEach(function(leg){ %>
                         <li>
                           <p>
-                            <%- segment.flight.carrier %><%- segment.flight.number %> | <%- leg.origin %> to <%- leg.destination %>
-                          </p>
-                          <p>
-                            <%- leg.departureTime %> to <%- leg.arrivalTime %>
-                          </p>
-                          <p>
-                            <%- leg.duration %> mins | <%- leg.mileage %> miles
+                            <%- leg.origin %> to <%- leg.destination %> | <%- segment.flight.carrier %><%- segment.flight.number %>
                           </p>
                           <p>
                             <%- leg.operatingDisclosure %>
+                          </p>
+                          <p>
+                            <%- new Date(leg.departureTime) %> to <%- new Date(leg.arrivalTime) %>
+                          </p>
+                          <p>
+                            <%- leg.duration %> mins | <%- leg.mileage %> miles
                           </p>
                         </li>
                       <% }) %>
