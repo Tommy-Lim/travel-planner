@@ -17,16 +17,31 @@ $(document).ready(function(){
     selectYears: 0, // Creates a dropdown of 15 years to control year
     format: 'yyyy-mm-dd',
     min: new Date(),
+    onSet: function( arg ){
+        if ( 'select' in arg ){ //prevent closing on selecting month/year
+            this.close();
+        }
+    }
   });
   $('.datepickerHistorical').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: false, // Creates a dropdown of 15 years to control year
     format: 'mmdd',
+    onSet: function( arg ){
+        if ( 'select' in arg ){ //prevent closing on selecting month/year
+            this.close();
+        }
+    }
   });
   $('.datepickerProfile').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: false, // Creates a dropdown of 15 years to control year
     format: 'mmdd',
+    onSet: function( arg ){
+        if ( 'select' in arg ){ //prevent closing on selecting month/year
+            this.close();
+        }
+    }
   });
 
   // BACK BUTTON FROM SEARCH FUNCTIONALITY
