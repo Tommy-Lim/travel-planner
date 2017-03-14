@@ -38,13 +38,14 @@
 }
 
 .home-container{
-  display: flex;
-  flex-direction: column;
-  padding: 3vh;
-  font-size: 3vh;
+  padding: 20px;
+  font-size: 24px;
 }
 
-
+.home-container .row{
+  display: flex;
+  align-items: center;
+}
 .card-action a{
   display: inline-block;
 }
@@ -150,6 +151,10 @@ footer.page-footer{
   padding-left: 10.5px;
 }
 
+.last-row{
+  margin-bottom: 0;
+}
+
 #modalDatesHistorical, #modalDatesProfile{
   transform: none !important;
   border-radius: 0px;
@@ -158,5 +163,12 @@ footer.page-footer{
 @media(min-width: 992px){
   nav .brand-logo{
     padding-left: 15px;
+  }
+}
+
+@media(max-width: 550px){
+  .home-container{
+    font-size: 18px;
+    padding: 5px 0px;
   }
 }
