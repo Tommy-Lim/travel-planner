@@ -22,7 +22,7 @@ Alas, Travel Easy to the rescue!
 
 * As a user, I want the site to be mobile friendly so that I can access all the features on my phone.
 
-* As a user, I want to compare flight cost information so I can factor in travel costs (flight feature in progress).
+* As a user, I want to compare flight cost information so I can factor in travel costs.
 
 ## Key Technologies
 
@@ -31,6 +31,7 @@ Alas, Travel Easy to the rescue!
 * PostgreSQL, Sequelize
 * Materialize, Bootstrap
 * APIs
+  * [Google Flights API](https://developers.google.com/qpx-express/)
   * [Weather Underground](https://www.wunderground.com/weather/api/)
   * [Freegeoip.net](https://freegeoip.net/)
   * [Cloudinary](http://cloudinary.com/documentation/admin_api)
@@ -56,7 +57,6 @@ To make this happen, M:M relationships were built between a user and a city.  Wh
 
 ## In Progress
 
-* Add Google Flights API and integrate user and airport models to allow users to find and save flight cost data (min, avg, high).
 * Add Facebook authorization for sign up and log in.
 
 ## Contact  
