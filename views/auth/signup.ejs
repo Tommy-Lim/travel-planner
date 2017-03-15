@@ -1,20 +1,22 @@
-<h5>Sign up / <a href="/auth/login">Log in</a></h5>
+<div class="row">
+  <h5>Sign up / <a href="/auth/login">Log in</a></h5>
+</div>
 
-<div class="well">
+<div class="row">
 
   <form class="" method="POST" action="/auth/signup" id="signup-form">
 
-    <div class="form-group">
+    <div class="input-field">
       <label for="name">Name</label>
-      <input name="name" class="form-control" placeholder="1-99 characters" required />
+      <input name="name" class="validate" placeholder="1-30 characters" type="text" pattern=".{1,30}" required />
     </div>
-    <div class="form-group">
+    <div class="input-field">
       <label for="email">Email</label>
-      <input name="email" class="form-control" type="email" placeholder="user@email.com" required />
+      <input name="email" class="validate" type="email" placeholder="user@email.com" required />
     </div>
-    <div class="form-group">
+    <div class="input-field">
       <label for="password">Password</label>
-      <input name="password" class="form-control" type="password" placeholder="8-99 characters" required />
+      <input name="password" class="validate" type="password" placeholder="8-30 characters" pattern=".{8,30}" required />
     </div>
 
     <input type="submit" class="btn btn-success blue" />
