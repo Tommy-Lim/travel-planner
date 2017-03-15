@@ -158,6 +158,7 @@ footer.page-footer{
 #modalDatesHistorical, #modalDatesProfile, #modalSettings{
   transform: none !important;
   border-radius: 0px;
+  overflow-y: visible;
 }
 
 #modalSettings .input-field.col label{
